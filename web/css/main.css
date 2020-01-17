@@ -387,7 +387,7 @@ h3 {
   font-size: 26px;
   line-height: 32px; }
 
-p, li {
+p, li, ul {
   font-family: "Helvetica Neue";
   font-style: normal;
   font-weight: 300;
@@ -2885,3 +2885,18 @@ header nav ul {
       transition: all 300ms; }
       header nav ul li a:hover {
         color: #919191; }
+
+footer ul {
+  font-weight: 400;
+  color: #fff;
+  margin: 0; }
+  footer ul li {
+    list-style-type: none; }
+    footer ul li:first-child {
+      margin-top: 15px; }
+    footer ul li a {
+      text-decoration: none;
+      color: #fff;
+      transition: all 300ms; }
+      footer ul li a:hover {
+        color: #b3b3b3; }
