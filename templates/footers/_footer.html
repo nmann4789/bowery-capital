@@ -1,0 +1,35 @@
+{#
+# Main Footer Template
+# ---------------
+#
+# Proper Implementation:
+# {% include "footers/_footer.html" %}
+#
+#
+#}
+
+
+{# ----- Prepare Data ----- #}
+
+
+{# ----- Build Page ----- #}
+
+<section class="block--paddingSM">
+  <footer class="container">
+    <div class="row border-bottom-light">
+      <div class="col-md-12 no-padding">
+        <div class="bottom">
+          {% include "footers/_footerNavigation.html" %}
+        </div>
+      </div>
+    </div>
+  </footer>
+</section>
+{% if entry is defined and entry.isEditable() %}
+  <div class="edit-entry">
+    <p>Welcome, {{ currentUser.friendlyName }}! <a href="{{ entry.cpEditUrl }}" class="color-orange arrow">Edit this
+        entry</a></p>
+  </div>
+{% endif %}
+
+<script src="/js/main.min.js"></script>

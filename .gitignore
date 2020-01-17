@@ -1,0 +1,8 @@
+/.env
+/.env.example
+/.idea
+/modules
+/node_modules
+/storage
+/vendor
+.DS_Store

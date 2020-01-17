@@ -1,0 +1,70 @@
+// Fonts
+
+html {
+  font-size: 16px;
+
+  @include phone-xs {
+    font-size: 14px;
+  }
+}
+
+// Typekit - Proxima Soft
+// @import url("https://use.typekit.net/tod1jlf.css");
+
+// Gliko
+@font-face {
+  font-family: "Gliko";
+  src: url("https://d1pxgl8l8levq9.cloudfront.net/fonts/Glick/Gliko-Modern-M-Black.woff")
+      format("woff2"),
+    url("https://d1pxgl8l8levq9.cloudfront.net/fonts/Glick/GlikoGliko-Modern-M-Black.woff2")
+      format("woff");
+  font-display: auto;
+}
+
+@font-face {
+  font-family: "Calibre";
+  src: url("https://d1pxgl8l8levq9.cloudfront.net/fonts/Calibre/Calibre-Light.eot");
+  src: url("https://d1pxgl8l8levq9.cloudfront.net/fonts/Calibre/Calibre-Light.woff2")
+    format("woff2");
+  font-weight: 300;
+  font-display: fallback;
+  font-style: normal;
+}
+
+h1 {
+  font-family: "Publico Headline Web";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 70px;
+  line-height: 113%;
+}
+
+h2 {
+  font-family: "Publico Headline Web";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 48px;
+}
+
+h3 {
+  font-family: "Publico Headline Web";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 32px;
+}
+
+h4 {
+}
+
+h5 {
+}
+
+p,li {
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 32px;
+}

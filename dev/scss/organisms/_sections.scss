@@ -1,0 +1,30 @@
+.block {
+  &--bg-black {
+    background-color: $black;
+  }
+  &--bg-navy {
+    background-color: $navy;
+  }
+  &--bg-tan {
+    background-color: $tan;
+  }
+  &--bg-white {
+    background-color: $white-soft;
+  }
+  &--paddingSM{
+    padding-top:20px;
+    padding-bottom:20px;
+  }
+  &--padding{
+    padding-top:40px;
+    padding-bottom:40px;
+  }
+  &--paddingLG{
+    padding-top:60px;
+    padding-bottom:60px;
+  }
+  &--paddingXL{
+    padding-top:80px;
+    padding-bottom:80px;
+  }
+}

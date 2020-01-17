@@ -1,0 +1,42 @@
+.button{
+  font-family: Helvetica Neue;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 32px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  display: inline-block;
+  padding:7px 10px;
+  &--light{
+    color:$navy;
+    &--arrow{
+      &:after {
+        content: url(/template-img/svg/arrow-navy.svg);
+        position: relative;
+        top: 0px;
+        display: inline-block;
+        width: 16px;
+        left: 10px;
+        transition: 300ms all;
+        z-index: 1;
+      }
+    }
+  }
+
+  &--dark{
+    color:$white;
+    &--arrow{
+      &:after {
+        content: url(/template-img/svg/arrow-white.svg);
+        position: relative;
+        top: 0px;
+        display: inline-block;
+        width: 16px;
+        left: 10px;
+        transition: 300ms all;
+        z-index: 1;
+      }
+    }
+  }
+}

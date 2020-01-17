@@ -1,0 +1,30 @@
+{#
+# Base Layout Template
+# ---------------
+#
+#}
+
+{# ----- Import Any Required Macros ----- #}
+
+
+{# ----- Prepare Data ----- #}
+
+
+{# ----- Build Data ----- #}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include "headers/_head" %}
+  {% block headAdditions %}
+
+  {% endblock %}
+</head>
+<body class="{{ bodyClass|default('') }}">
+{% include "headers/_header" %}
+{% block content %}
+
+{% endblock %}
+{% include "footers/_footer" %}
+</body>
+</html>

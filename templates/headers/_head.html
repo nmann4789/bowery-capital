@@ -1,0 +1,37 @@
+{#
+# Main Head Template
+# ---------------
+#
+# Proper Implementation:
+# {% include "headers/_head.html" %}
+#
+#
+#}
+
+
+{# ----- Prepare Data ----- #}
+
+{% set noIndexPage = (entry is defined and entry.pageIndexed is not null and entry.pageIndexed != 1) or (indexPage is defined and not indexPage) ? 1 %}
+
+{# ----- Build Page ----- #}
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>{{ pageTitle }}</title>
+<meta name="description" content="{{ metaDescription is defined ? metaDescription }}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="icon" href="/template-img/icons/bowery-favicon.png" sizes="192x192">
+{% if noIndexPage %}
+  <meta name="robots" content="noindex, nofollow">
+{% else %}
+  <meta name="robots" content="index, follow">
+{% endif %}
+<meta property="og:url" content="{{craft.app.request.absoluteUrl}}">
+<meta property="og:title" content="{{ pageTitle }}">
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@bowerycapital" />
+<meta name="twitter:title" content="{{pageTitle}}" />
+<meta name="twitter:description" content="{{ metaDescription }}">
+<link rel="canonical" href="{{canonicalLink is defined ? canonicalLink : (siteUrl  ~ craft.app.request.pathInfo())}}">
+
