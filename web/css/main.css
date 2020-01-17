@@ -2889,7 +2889,8 @@ header nav ul {
 footer ul {
   font-weight: 400;
   color: #fff;
-  margin: 0; }
+  margin: 0;
+  padding: 0; }
   footer ul li {
     list-style-type: none; }
     footer ul li:first-child {
