@@ -37,6 +37,7 @@ h1 {
   font-weight: bold;
   font-size: 70px;
   line-height: 113%;
+  margin:0;
 }
 
 h2 {
@@ -45,6 +46,7 @@ h2 {
   font-weight: bold;
   font-size: 40px;
   line-height: 48px;
+  margin:0;
 }
 
 h3 {
@@ -53,6 +55,7 @@ h3 {
   font-weight: bold;
   font-size: 26px;
   line-height: 32px;
+  margin:0;
 }
 
 h4 {
@@ -67,4 +70,14 @@ p,li, ul {
   font-weight: 300;
   font-size: 18px;
   line-height: 32px;
+}
+
+a{
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  text-decoration: inherit;
+  color:inherit;
 }

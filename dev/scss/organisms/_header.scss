@@ -18,3 +18,28 @@ header{
     }
   }
 }
+
+.header__sub{
+  ul{
+    margin:0;
+    padding:0;
+    li{
+      list-style-type: none;
+      a{
+        text-decoration: none;
+        display: block;
+        padding:15px 30px 13px 0;
+        color:$grey-dark;
+        transition: all 300ms;
+        &:hover{
+          color:lighten($grey-dark, 40%)
+        }
+        &.active{
+          font-weight: 500;
+          position: relative;
+          top: -1px;
+        }
+      }
+    }
+  }
+}

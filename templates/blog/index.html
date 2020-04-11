@@ -1,0 +1,169 @@
+{#
+# Blog Index Template
+# ---------------
+#
+#}
+
+{# ----- Import Any Required Macros ----- #}
+
+
+{# ----- Prepare Data ----- #}
+
+
+{% set cardsToLoad = 12 %}
+{% set searchParam = craft.app.request.getParam('q') %}
+{% set blogTopicParam =  craft.app.request.getParam('topic') %}
+{% set blogCategory = craft.categories.slug(blogTopicParam).one() %}
+{% set canonicalLink = siteUrl ~ craft.app.request.fullPath() %}
+{% set pageParam = craft.app.request.getParam('page') %}
+{% set offset = 0 %}
+
+{% set pageTitle = "Our Blog | Bowery Capital" %}
+{% set metaDescription = "The Bowery Capital Blog focuses on giving practical sales, marketing, and customer success advice in support of founders building the next generation of B2B market leaders." %}
+{% set bodyClass =  searchParam|length > 0 ? 'blog index search' : 'blog index' %}
+{% set indexPage = true %}
+
+{% if ( blogTopicParam is defined and blogTopicParam!="" ) %}
+  {% set entries = craft.entries({search: searchParam, orderBy:'score'}).section('blog').type(['blog']).relatedTo(blogCategory).showInChannel(1).orderBy('postDate desc').offset(offset).limit(cardsToLoad).all() %}
+{% else %}
+  {% set entries = craft.entries({search: searchParam, orderBy:'score'}).section('blog').type(['blog']).showInChannel(1).orderBy('postDate desc').offset(offset).limit(cardsToLoad).all() %}
+{% endif %}
+
+{% set featuredEntries = craft.entries.section('blog').type(['blog']).orderBy('postDate desc').featuredArticle('1').showInChannel('1').limit(3).all() %}
+
+{% set blogTopics =  craft.categories.group('blogTopic') %}
+
+{% extends "layouts/_baseLayout" %}
+
+
+{# ----- Build Data ----- #}
+
+{% block headAdditions %}
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5/dat.gui.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<section class="block--padding-horizontalSM block--bg-grey-warm">
+  <div class="container">
+    <div class="row">
+      <nav class="col-md-8 align-self-center header__sub">
+        <ul class="d-flex">
+          <li><a href="#" class="category__filter active" data-category="">All</a></li>
+          <li><a href="#" class="category__filter" data-category="talent">Talent</a></li>
+          <li><a href="#" class="category__filter" data-category="podcasts">Podcasts</a></li>
+        </ul>
+      </nav>
+      <div class="col-md-4 d-flex align-items-center justify-content-end ">
+        <form action="{{ url('search/results') }}" class="d-flex align-items-center justify-content-end search-form closed">
+          <input type="search" name="q" placeholder="{{ searchParam }}">
+          <button type="submit">{% include "components/svg/search.svg" %}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% if searchParam|length == 0 %}
+<section class="block--margin-bottom">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 block--padding-none">
+        <div class="card__featured d-flex">
+          <div class="card__thumb">
+            <a href="/"><img src="/temp/thumbs/card-thumb.jpg" alt="test"></a>
+          </div>
+          <div class="card__content block--padding block--padding-horizontal">
+            <div class="category color--olive">Finance</div>
+            <h2 class="card__content__title"><a href="/">Breaking Into Startup Sales with Matt Hidalgo from Cockroach Labs</a></h2>
+            <p class="card__content__description">
+              We’re pleased to announce the Bowery Capital 2019 Startup Sales Stack Report! Please check  it out below. This report is meant to serve as a guiding framework for anyone evaluating sales solutions. Startup Sales Stack Report! Please  check it out below. This report is meant to serve  as a guiding
+            </p>
+            <div class="">
+              <a class="button button--light--arrow" href="/">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% else %}
+<section class="block--bg-grey-cool block--paddingXL text-center">
+  <div class="category__large category color--tan">What's New In</div>
+  <h1>{{ blogTopicParam }}</h1>
+</section>
+{% endif %}
+<section class="block--paddingXL">
+  <div class="container">
+    <div class="row blog-card-container continuous-scroll">
+      <div class="col-md-6 col-lg-4">
+        <div class="card">
+          <div class="card__thumb block--margin-bottomSM">
+            <a href="/"><img src="/temp/thumbs/card-thumb.jpg" alt="test"></a>
+          </div>
+          <div class="card__content block--margin-bottomSM">
+            <div class="category">Finance</div>
+            <h3 class="card__content__title"><a href="/">Test Title</a></h3>
+            <p class="card__content__description color--grey-dark">
+              We’re pleased to announce the Bowery Capital 2019 Startup Sales Stack Report! Please check  it out below. This report is meant to serve as a guiding framework for anyone evaluating sales solutions. Startup Sales Stack Report! Please  check it out below. This report is meant to serve  as a guiding
+            </p>
+          </div>
+          <div class="">
+            <a class="button button--light--arrow" href="/">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card">
+          <div class="card__thumb block--margin-bottomSM">
+            <a href="/"><img src="/temp/thumbs/card-thumb.jpg" alt="test"></a>
+          </div>
+          <div class="card__content block--margin-bottomSM">
+            <div class="category">Finance</div>
+            <h3 class="card__content__title"><a href="/">Test Title</a></h3>
+            <p class="card__content__description color--grey-dark">
+              We’re pleased to announce the Bowery Capital 2019 Startup Sales Stack Report! Please check  it out below. This report is meant to serve as a guiding framework for anyone evaluating sales solutions. Startup Sales Stack Report! Please  check it out below. This report is meant to serve  as a guiding
+            </p>
+          </div>
+          <div class="">
+            <a class="button button--light--arrow" href="/">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card">
+          <div class="card__thumb block--margin-bottomSM">
+            <a href="/"><img src="/temp/thumbs/card-thumb.jpg" alt="test"></a>
+          </div>
+          <div class="card__content block--margin-bottomSM">
+            <div class="category">Finance</div>
+            <h3 class="card__content__title"><a href="/">Test Title</a></h3>
+            <p class="card__content__description color--grey-dark">
+              We’re pleased to announce the Bowery Capital 2019 Startup Sales Stack Report! Please check  it out below. This report is meant to serve as a guiding framework for anyone evaluating sales solutions. Startup Sales Stack Report! Please  check it out below. This report is meant to serve  as a guiding
+            </p>
+          </div>
+          <div class="">
+            <a class="button button--light--arrow" href="/">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row margin-bottomLG">
+      <div class="col-md-12 flex justify-content-center">
+        {% if entries|length >= 12 %}
+          {% if blogTopicParam!= "" %}
+            <a id="load-more-cards" class="button hidden"
+               href="{{ siteUrl }}blog/ajax/{{ offset + cardsToLoad }}?topic={{ blogTopicParam }}{{ searchParam|length > 0 ? '?search='~searchParam }}">Load
+              More</a>
+          {% else %}
+            <a id="load-more-cards" class="button hidden"
+               href="{{ siteUrl }}blog/ajax/{{ offset + cardsToLoad }}{{ searchParam|length > 0 ? '&search='~searchParam }}">Load More</a>
+          {% endif %}
+        {% endif %}
+        {% if entries|length == 0 %}
+          <h3>Sorry no results{{ searchParam|length > 0 ? ' for '~ searchParam }}, please try another search.</h3>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

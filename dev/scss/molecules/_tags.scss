@@ -3,6 +3,15 @@
   font-style: normal;
   font-weight: bold;
   font-size: 10px;
+  text-transform: uppercase;
   line-height: 32px;
   letter-spacing: 0.2em;
+  color:$tan;
+  &__short{
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  &__large{
+    font-size: 14px;
+  }
 }

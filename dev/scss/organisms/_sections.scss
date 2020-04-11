@@ -11,6 +11,15 @@
   &--bg-white {
     background-color: $white-soft;
   }
+  &--bg-grey {
+    background-color: $grey;
+  }
+  &--bg-grey-cool {
+    background-color: $grey-cool;
+  }
+  &--bg-grey-warm {
+    background-color: $grey-warm;
+  }
   &--paddingSM{
     padding-top:20px;
     padding-bottom:20px;
@@ -26,5 +35,84 @@
   &--paddingXL{
     padding-top:80px;
     padding-bottom:80px;
+  }
+  &--padding-bottomSM{
+    padding-bottom:20px;
+  }
+  &--padding-bottom{
+    padding-bottom:40px;
+  }
+  &--padding-bottomLG{
+    padding-bottom:60px;
+  }
+  &--padding-bottomXL{
+    padding-bottom:80px;
+  }
+  &--padding-horizontalSM{
+    padding-left:20px;
+    padding-right:20px;
+  }
+  &--padding-horizontal{
+    padding-left:40px;
+    padding-right:40px;
+  }
+  &--padding-horizontalLG{
+    padding-left:60px;
+    padding-right:60px;
+  }
+  &--padding-horizontalXL{
+    padding-left:80px;
+    padding-right:80px;
+  }
+  &--padding-none{
+    padding:0;
+  }
+  &--margin-bottomSM{
+    margin-bottom: 20px;
+  }
+  &--margin-bottom{
+    margin-bottom: 40px;
+  }
+  &--margin-bottomLG{
+    margin-bottom: 60px;
+  }
+  &--margin-bottomXL{
+    margin-bottom: 80px;
+  }
+  &--margin-topSM{
+    margin-top: 20px;
+  }
+  &--margin-top{
+    margin-top: 40px;
+  }
+  &--margin-topLG{
+    margin-top: 60px;
+  }
+  &--margin-topXL{
+    margin-top: 80px;
+  }
+  &--margin-leftSM{
+    margin-left: 20px;
+  }
+  &--margin-left{
+    margin-left: 40px;
+  }
+  &--margin-leftLG{
+    margin-left: 60px;
+  }
+  &--margin-leftXL{
+    margin-left: 80px;
+  }
+  &--margin-rightSM{
+    margin-right: 20px;
+  }
+  &--margin-right{
+    margin-right: 40px;
+  }
+  &--margin-rightLG{
+    margin-right: 60px;
+  }
+  &--margin-rightXL{
+    margin-right: 80px;
   }
 }

@@ -1,0 +1,90 @@
+{#
+# Home Page Template
+# ---------------
+#
+#}
+
+{# ----- Import Any Required Macros ----- #}
+
+
+{# ----- Prepare Data ----- #}
+
+
+{% set portfolioTopicParam =  craft.app.request.getParam('topic') %}
+{% set portfolioCategory = craft.categories.slug(portfolioTopicParam).one() %}
+
+{% set pageTitle = "Our Investments | Bowery Capital" %}
+{% set metaDescription = "A full list of Bowery Capital portfolio companies. Our founders are building the next generation of B2B market leaders." %}
+{% set bodyClass =  'portfolio index' %}
+{% set indexPage = true %}
+
+{% if ( portfolioTopicParam is defined and portfolioTopicParam!="" ) %}
+  {% set entries = craft.entries().section('portfolio').type(['portfolio']).relatedTo(portfolioCategory).showInChannel(1).orderBy('postDate desc').all() %}
+{% else %}
+  {% set entries = craft.entries().section('portfolio').type(['portfolio']).showInChannel(1).orderBy('postDate desc').all() %}
+{% endif %}
+
+{% extends "layouts/_baseLayout" %}
+
+{% block headAdditions %}
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5/dat.gui.min.js"></script>
+{% endblock %}
+
+
+{# ----- Build Data ----- #}
+
+{% block content %}
+<section class="block--bg-grey-cool block--paddingXL text-center">
+  <div class="category__large category color--tan">Our Portfolio</div>
+  <h1>Powerful Headline</h1>
+</section>
+<section class="block--padding">
+  <div class="container">
+    <div class="row">
+      <nav class="col-md-8 align-self-center header__sub">
+        <ul class="d-flex">
+          <li><a href="#" class="category__filter active" data-category="">All</a></li>
+          <li><a href="#" class="category__filter" data-category="horizontal">Horizontal</a></li>
+          <li><a href="#" class="category__filter" data-category="vertical">Vertical</a></li>
+          <li><a href="#" class="category__filter" data-category="vertical">Subscription</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</section>
+<section class="block--margin-bottomXL">
+  <div class="container">
+    <div class="row">
+      {% for entry in entries %}
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="card__portfolio">
+            <div class="card__portfolio--acquired {{ entry.wasAcquired ? 'true' }}">Acquired</div>
+            <img src="{{entry.companyLogo.one().url}}" alt="{{entry.title}}" />
+            <div class="card__portfolio--popout">
+              <div class="card__portfolio--popout--close">{% include "components/svg/close.svg" %}</div>
+              <div class="card__portfolio--popout--thumb d-flex align-items-center">
+                <img src="{{entry.companyLogo.one().url}}" alt="{{entry.title}}" />
+                <div class="card__portfolio--acquired {{ entry.wasAcquired ? 'true' }}">Acquired</div>
+              </div>
+              <div class="block--padding-horizontalSM block--margin-bottom">
+                <p class="card__portfolio--popout--it">{{ entry.investmentType }}</p>
+                <p class="card__portfolio--popout--desc">{{ entry.shortDescription }}</p>
+                <div class="card__portfolio--popout--yi">{% include "components/svg/dollar.svg" %} Invested in {{ entry.yearInvested }}</div>
+                <div class="article__meta block--margin-bottom">
+                  <div class="article__meta--topics">
+                    {% for category in entry.companyType.all() %}
+                    <a href="#" class="article__meta--topic">{{ category.title }}</a>
+                    {% endfor %}
+                  </div>
+                </div>
+                <a class="button button--light--arrow" href="{{ entry.companyWebsite }}" target="_blank">Visit Website</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

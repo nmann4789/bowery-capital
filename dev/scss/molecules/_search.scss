@@ -1,0 +1,31 @@
+.search-form{
+  &.closed{
+    input{
+      width:0;
+      opacity: 0;
+    }
+  }
+  input{
+    width:100%;
+    opacity: 1;
+    transition: 1s all;
+    margin-right: 20px;
+    color: $grey-medium;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid $grey-medium;
+    font-family: "Helvetica Neue";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 26px;
+  }
+  button{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: transparent;
+    border:none;
+    position: relative;
+    top:2px;
+  }
+}

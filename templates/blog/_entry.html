@@ -1,0 +1,199 @@
+{#
+# Blog Entry Template
+# -------------------
+#
+#
+#
+#}
+
+{# ----- Import Any Required Macros ----- #}
+
+
+{# ----- Prepare Data ----- #}
+
+  {% set pageTitle = entry.title ~ " | Bowery Capital" %}
+  {% set metaDescription = entry.shortDescription %}
+  {% set bodyClass = 'blog entry' %}
+
+  {% set heroText = "" %}
+  {% if entry.heroTitle=="" %}
+    {% set heroText = entry.title %}
+  {% else %}
+    {% set heroText = entry.heroTitle %}
+  {% endif %}
+
+  {% set imageUrl = "" %}
+  {#{% for image in entry.heroImage.all() %}#}
+    {#{% set imageUrl = image.getUrl('indexThumbnailTransform') |raw |default("") %}#}
+  {#{% endfor %}#}
+
+  {% extends "layouts/_baseLayout" %}
+
+  {% block headAdditions %}
+    <meta property="og:image" content="{{ imageUrl }}">
+    <meta name="twitter:image" content="{{ imageUrl }}"/>
+    <link rel="amphtml" href="{{ entry.url~"/amp" }}">
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "{{ entry.title }}",
+        "image": {
+          "@type": "ImageObject",
+          "url": "{{ imageUrl }}",
+          "width": 696,
+          "height": 392
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "{{ siteUrl  ~ craft.app.request.absoluteUrl }}"
+        },
+        "description": "{{ entry.shortDescription }}",
+        "datePublished": "{{ entry.postDate|date() }}",
+        "dateModified": "{{ entry.dateUpdated|date() }}",
+        "author": {
+          "@type": "Person",
+          "name": "{{ entry.author.fullName }}"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Bowery",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "",
+            "width": 275
+          }
+        }
+      }
+    </script>
+  {% endblock %}
+
+
+  {# ----- Build Page ----- #}
+
+
+  {% block content %}
+    <section class="block--padding-horizontalSM block--bg-grey">
+      <div class="container">
+        <div class="row">
+          <nav class="col-md-8 align-self-center header__sub">
+            <ul class="d-flex">
+              <li><a href="#" class="category__filter active" data-category="">All</a></li>
+              <li><a href="#" class="category__filter" data-category="talent">Talent</a></li>
+              <li><a href="#" class="category__filter" data-category="podcasts">Podcasts</a></li>
+            </ul>
+          </nav>
+          <div class="col-md-4 d-flex align-items-center justify-content-end ">
+            <form action="{{ url('search/results') }}" class="d-flex align-items-center justify-content-end search-form closed">
+              <input type="search" name="q" placeholder="Search">
+              <button type="submit">{% include "components/svg/search.svg" %}</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="block--padding article">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card__featured d-flex">
+              <div class="card__content">
+                <div class="category color--olive">Finance</div>
+                <h2 class="card__content__title">{{ entry.title }}</h2>
+                <p class="card__content__description block--margin-bottomSM">{{ entry.shortDescription }}</p>
+                <div class="card__content__author">
+                  <img src="/temp/thumbs/card-thumb.jpg" alt="test" class="card__content__author__thumb">
+                  <div class="card__content__author__info">
+                    <p class="card__content__author__name color--navy">Loren Straub</p>
+                    <p class="card__content__author__title">Principal, Partner</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <img src="/temp/thumbs/card-thumb.jpg" alt="test">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="block--padding border-bottom__gray">
+      <div class="container block--margin-bottom">
+        <div class="row">
+          <div class="col-md-8"></div>
+          <div class="col-md-3 offset-md-1">
+            <div class="border-bottom__gray">
+              <a href="#"><img src="/template-img/logos/bowery-podcast.jpg" alt="Bowery Capital - Startup Sales Podcast"></a>
+            </div>
+            <div class="article__meta">
+              <p class="article__meta--date">{{ entry.postDate | date('F d, Y') }}</p>
+              <div class="article__meta--topics">
+                <a href="#" class="article__meta--topic">Podcast</a>
+                <a href="#" class="article__meta--topic">Podcast</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="block--paddingXL">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center block--margin-bottomLG">
+            <h2>You might also like...</h2>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card">
+              <div class="card__thumb block--margin-bottomSM">
+                <a href="/"><img src="/temp/thumbs/card-thumb.jpg" alt="test"></a>
+              </div>
+              <div class="card__content block--margin-bottomSM">
+                <div class="category">Finance</div>
+                <h3 class="card__content__title"><a href="/">Test Title</a></h3>
+                <p class="card__content__description color--grey-dark">
+                  We’re pleased to announce the Bowery Capital 2019 Startup Sales Stack Report! Please check  it out below. This report is meant to serve as a guiding framework for anyone evaluating sales solutions. Startup Sales Stack Report! Please  check it out below. This report is meant to serve  as a guiding
+                </p>
+              </div>
+              <div class="">
+                <a class="button button--light--arrow" href="/">Learn More</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card">
+              <div class="card__thumb block--margin-bottomSM">
+                <a href="/"><img src="/temp/thumbs/card-thumb.jpg" alt="test"></a>
+              </div>
+              <div class="card__content block--margin-bottomSM">
+                <div class="category">Finance</div>
+                <h3 class="card__content__title"><a href="/">Test Title</a></h3>
+                <p class="card__content__description color--grey-dark">
+                  We’re pleased to announce the Bowery Capital 2019 Startup Sales Stack Report! Please check  it out below. This report is meant to serve as a guiding framework for anyone evaluating sales solutions. Startup Sales Stack Report! Please  check it out below. This report is meant to serve  as a guiding
+                </p>
+              </div>
+              <div class="">
+                <a class="button button--light--arrow" href="/">Learn More</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card">
+              <div class="card__thumb block--margin-bottomSM">
+                <a href="/"><img src="/temp/thumbs/card-thumb.jpg" alt="test"></a>
+              </div>
+              <div class="card__content block--margin-bottomSM">
+                <div class="category">Finance</div>
+                <h3 class="card__content__title"><a href="/">Test Title</a></h3>
+                <p class="card__content__description color--grey-dark">
+                  We’re pleased to announce the Bowery Capital 2019 Startup Sales Stack Report! Please check  it out below. This report is meant to serve as a guiding framework for anyone evaluating sales solutions. Startup Sales Stack Report! Please  check it out below. This report is meant to serve  as a guiding
+                </p>
+              </div>
+              <div class="">
+                <a class="button button--light--arrow" href="/">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endblock %}
