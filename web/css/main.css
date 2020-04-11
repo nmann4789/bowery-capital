@@ -3093,11 +3093,12 @@ img {
 
 .card__portfolio {
   border: 1px solid #CDD3DF;
-  padding: 60px 20px;
   position: relative; }
   .card__portfolio:hover {
     border: 1px solid #1c3e58;
     cursor: pointer; }
+  .card__portfolio--preview {
+    padding: 60px 20px; }
   .card__portfolio--acquired {
     display: none;
     position: absolute;

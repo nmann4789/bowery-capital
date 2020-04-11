@@ -68,11 +68,13 @@
   }
   &__portfolio{
     border:1px solid $grey-medium;
-    padding:60px 20px;
     position: relative;
     &:hover{
       border:1px solid $navy;
       cursor:pointer;
+    }
+    &--preview{
+      padding:60px 20px;
     }
     &--acquired{
       display: none;

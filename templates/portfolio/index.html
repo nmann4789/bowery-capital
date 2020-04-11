@@ -58,8 +58,10 @@
       {% for entry in entries %}
         <div class="col-lg-3 col-md-4 col-sm-6">
           <div class="card__portfolio">
-            <div class="card__portfolio--acquired {{ entry.wasAcquired ? 'true' }}">Acquired</div>
-            <img src="{{entry.companyLogo.one().url}}" alt="{{entry.title}}" />
+            <div class="card__portfolio--preview">
+              <div class="card__portfolio--acquired {{ entry.wasAcquired ? 'true' }}">Acquired</div>
+              <img src="{{entry.companyLogo.one().url}}" alt="{{entry.title}}" />
+            </div>
             <div class="card__portfolio--popout">
               <div class="card__portfolio--popout--close">{% include "components/svg/close.svg" %}</div>
               <div class="card__portfolio--popout--thumb d-flex align-items-center">
