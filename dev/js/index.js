@@ -12,19 +12,26 @@ let _portfolio = require('./_portfolio')
 $(document).ready(function () {
   _helpers.init()
   _portfolio.init()
-  $('.mkd-blog-holder article').each(function () {
+  $('.vc_gitem-zone-img').each(function (index, element) {
 
-    let title = $(this).find('.mkd-post-title a').text()
-    let slug = ($(this).find('.mkd-post-title a').attr('href')).split('/')[5];
-    let postDate = $(this).find('.mkd-date').text()
-    let imgThumb = $(this).find('.wp-post-image').attr('src')
-    let shortDescription = $(this).find('.mkd-post-excerpt').text()
-    let categories = ""
+    // let title = $(this).find('.vc_gitem-zone a').attr('title')
+    // let slug = ($(this).find('.vc_gitem-zone a').attr('href')).split('/')[5];
+    // let postDate = "skip"
+    // let imgThumb = $(this).find('.vc_gitem-zone-img').attr('src')
+    // let shortDescription = $(this).find('.vc_gitem-post-data-source-post_excerpt div p').text()
+    // let categories = "skip"
+    //
+    // // $(this).find('.mkd-category-name').each(function(){
+    // //   categories += ($(this).text() + "| ")
+    // // })
+    // console.log(index,"|",title,"|",slug,"|",postDate, "|",imgThumb,"|",categories,"|",shortDescription  )
 
-    $(this).find('.mkd-category-name').each(function(){
-      categories += ($(this).text() + "| ")
-    })
-    console.log($(this).attr('id'),",",title,",",slug,",",postDate, ",",imgThumb,",",categories,",",shortDescription  )
+    var a = document.createElement('a');
+    a.href = $(this).attr('src');
+    a.download = $(this).attr('src');
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   })
 })
 
