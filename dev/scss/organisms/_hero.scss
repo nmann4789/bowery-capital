@@ -1,0 +1,10 @@
+.hero {
+  position: relative;
+  canvas {
+    position: absolute;
+    cursor: crosshair;
+    left: calc(50% - 50px);
+    top: 0%;
+    height: 100%;
+  }
+}

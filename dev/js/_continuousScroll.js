@@ -20,7 +20,7 @@ const _continuousScrollFeed = {
     let search = this.getParameterByName('search')
     let topic = this.getParameterByName('topic')
 
-    //TODO Set Active Toggle
+    // TODO Set Active Toggle
     if ($('.category-toggle').length > 0) {
       $('.category-toggle a.' + topic).addClass('active')
       if (search !== null || topic !== null) {
@@ -81,7 +81,7 @@ const _continuousScrollFeed = {
   },
   buildQueryString: function (search, topic) {
     // console.log('search: ' + search + ', type: ' + type + ', topic: ' + topic)
-    //TODO Validate Working
+    // TODO Validate Working
     let queryString = ''
     if (topic === null) {
       queryString = ''
@@ -112,7 +112,7 @@ const _continuousScrollFeed = {
 
     let queryString = this.parseResourceParams()
     let newUrl = http + '://' + segments.join('/') + '/' + newOffset + queryString
-    console.log("New URL: "+newUrl);
+    console.log('New URL: ' + newUrl)
     $('#load-more-cards').attr('href', newUrl)
   },
   cardSlideAnimation: function (element, delay) {

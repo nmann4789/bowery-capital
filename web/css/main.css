@@ -4056,6 +4056,17 @@ img {
   margin-right: 20px;
 }
 
+.hero {
+  position: relative;
+}
+.hero canvas {
+  position: absolute;
+  cursor: crosshair;
+  left: calc(50% - 50px);
+  top: 0%;
+  height: 100%;
+}
+
 .block--bg-black {
   background-color: #000;
 }
