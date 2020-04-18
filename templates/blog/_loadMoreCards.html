@@ -1,0 +1,29 @@
+{#
+# Resource Cards AJAX Template
+# ---------------
+#
+#}
+{# ----- Import Any Required Macros ----- #}
+
+
+{# ----- Prepare Data ----- #}
+
+
+{% set startIndex = (craft.app.request.getSegment(3)  is defined) ? craft.app.request.getSegment(3)|number_format : 0 %}
+{% set cardsToLoad = 12 %}
+{% set offset = startIndex + cardsToLoad %}
+{% set searchParam = craft.app.request.getParam('search')| replace({'$':'','%':'','=':'','_':'','`':'' }) %}
+{% set blogTopicParam =  craft.app.request.getParam('topic') %}
+{% set blogCategory = craft.categories.slug(blogTopicParam).one() %}
+
+{% if ( blogTopicParam is defined and blogTopicParam!="" ) %}
+  {% set entries = craft.entries({search: searchParam, orderBy:'score'}).section('blog').type(['blog']).relatedTo(blogCategory).showInChannel(1).orderBy('postDate desc').offset(offset).limit(cardsToLoad).all() %}
+{% else %}
+  {% set entries = craft.entries({search: searchParam, orderBy:'score'}).section('blog').type(['blog']).showInChannel(1).orderBy('postDate desc').offset(offset).limit(cardsToLoad).all() %}
+{% endif %}
+{# ----- Build Data ----- #}
+{% for entry in entries %}
+  <div class="col-md-6 col-lg-4 block--margin-bottom card-container">
+    {% include "components/cards/_article.html" with {entry: entry} %}
+  </div>
+{% endfor %}

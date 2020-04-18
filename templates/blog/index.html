@@ -29,9 +29,7 @@
   {% set entries = craft.entries({search: searchParam, orderBy:'score'}).section('blog').type(['blog']).showInChannel(1).orderBy('postDate desc').offset(offset).limit(cardsToLoad).all() %}
 {% endif %}
 
-{% set featuredEntries = craft.entries.section('blog').type(['blog']).orderBy('postDate desc').featuredArticle('1').showInChannel('1').limit(3).all() %}
-
-{% set blogTopics =  craft.categories.group('blogTopic') %}
+{% set featuredEntry = craft.entries.section('blog').type(['blog']).orderBy('postDate desc').featuredArticle('1').showInChannel('1').one() %}
 
 {% extends "layouts/_baseLayout" %}
 
@@ -46,13 +44,7 @@
 <section class="block--padding-horizontalSM block--bg-grey-warm">
   <div class="container">
     <div class="row">
-      <nav class="col-md-8 align-self-center header__sub">
-        <ul class="d-flex">
-          <li><a href="#" class="category__filter active" data-category="">All</a></li>
-          <li><a href="#" class="category__filter" data-category="talent">Talent</a></li>
-          <li><a href="#" class="category__filter" data-category="podcasts">Podcasts</a></li>
-        </ul>
-      </nav>
+      {% include "components/nav/_subnavBlog.html" with {categories:craft.categories.group('blogCategory')} %}
       <div class="col-md-4 d-flex align-items-center justify-content-end ">
         <form action="{{ url('search/results') }}" class="d-flex align-items-center justify-content-end search-form closed">
           <input type="search" name="q" placeholder="{{ searchParam }}">
@@ -62,31 +54,17 @@
     </div>
   </div>
 </section>
-{% if searchParam|length == 0 %}
+{% if searchParam|length == 0 and featuredEntry|length > 0 %}
 <section class="block--margin-bottom">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12 block--padding-none">
-        <div class="card__featured d-flex">
-          <div class="card__thumb">
-            <a href="/"><img src="/temp/thumbs/card-thumb.jpg" alt="test"></a>
-          </div>
-          <div class="card__content block--padding block--padding-horizontal">
-            <div class="category color--olive">Finance</div>
-            <h2 class="card__content__title"><a href="/">Breaking Into Startup Sales with Matt Hidalgo from Cockroach Labs</a></h2>
-            <p class="card__content__description">
-              We’re pleased to announce the Bowery Capital 2019 Startup Sales Stack Report! Please check  it out below. This report is meant to serve as a guiding framework for anyone evaluating sales solutions. Startup Sales Stack Report! Please  check it out below. This report is meant to serve  as a guiding
-            </p>
-            <div class="">
-              <a class="button button--light--arrow" href="/">Learn More</a>
-            </div>
-          </div>
-        </div>
+        {% include "components/cards/_articleFeatured.html" with {entry: featuredEntry} %}
       </div>
     </div>
   </div>
 </section>
-{% else %}
+{% elseif searchParam|length > 0 %}
 <section class="block--bg-grey-cool block--paddingXL text-center">
   <div class="category__large category color--tan">What's New In</div>
   <h1>{{ blogTopicParam }}</h1>
@@ -95,57 +73,11 @@
 <section class="block--paddingXL">
   <div class="container">
     <div class="row blog-card-container continuous-scroll">
-      <div class="col-md-6 col-lg-4">
-        <div class="card">
-          <div class="card__thumb block--margin-bottomSM">
-            <a href="/"><img src="/temp/thumbs/card-thumb.jpg" alt="test"></a>
-          </div>
-          <div class="card__content block--margin-bottomSM">
-            <div class="category">Finance</div>
-            <h3 class="card__content__title"><a href="/">Test Title</a></h3>
-            <p class="card__content__description color--grey-dark">
-              We’re pleased to announce the Bowery Capital 2019 Startup Sales Stack Report! Please check  it out below. This report is meant to serve as a guiding framework for anyone evaluating sales solutions. Startup Sales Stack Report! Please  check it out below. This report is meant to serve  as a guiding
-            </p>
-          </div>
-          <div class="">
-            <a class="button button--light--arrow" href="/">Learn More</a>
-          </div>
+      {% for entry in entries %}
+        <div class="col-md-6 col-lg-4 block--margin-bottom card-container">
+          {% include "components/cards/_article.html" with {entry: entry} %}
         </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="card">
-          <div class="card__thumb block--margin-bottomSM">
-            <a href="/"><img src="/temp/thumbs/card-thumb.jpg" alt="test"></a>
-          </div>
-          <div class="card__content block--margin-bottomSM">
-            <div class="category">Finance</div>
-            <h3 class="card__content__title"><a href="/">Test Title</a></h3>
-            <p class="card__content__description color--grey-dark">
-              We’re pleased to announce the Bowery Capital 2019 Startup Sales Stack Report! Please check  it out below. This report is meant to serve as a guiding framework for anyone evaluating sales solutions. Startup Sales Stack Report! Please  check it out below. This report is meant to serve  as a guiding
-            </p>
-          </div>
-          <div class="">
-            <a class="button button--light--arrow" href="/">Learn More</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="card">
-          <div class="card__thumb block--margin-bottomSM">
-            <a href="/"><img src="/temp/thumbs/card-thumb.jpg" alt="test"></a>
-          </div>
-          <div class="card__content block--margin-bottomSM">
-            <div class="category">Finance</div>
-            <h3 class="card__content__title"><a href="/">Test Title</a></h3>
-            <p class="card__content__description color--grey-dark">
-              We’re pleased to announce the Bowery Capital 2019 Startup Sales Stack Report! Please check  it out below. This report is meant to serve as a guiding framework for anyone evaluating sales solutions. Startup Sales Stack Report! Please  check it out below. This report is meant to serve  as a guiding
-            </p>
-          </div>
-          <div class="">
-            <a class="button button--light--arrow" href="/">Learn More</a>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
     <div class="row margin-bottomLG">
       <div class="col-md-12 flex justify-content-center">

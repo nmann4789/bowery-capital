@@ -1,0 +1,8 @@
+<nav class="col-md-8 align-self-center header__sub">
+  <ul class="d-flex">
+    <li><a href="{{ siteUrl ~ 'blog' }}" class="category__filter active" data-category="">All</a></li>
+    {% for topic in categories %}
+      <li><a href="{{ siteUrl ~ "blog?topic=" ~ topic.slug }}" class="category__filter" data-category="{{ topic.slug }}">{{ topic.title }}</a></li>
+    {% endfor %}
+  </ul>
+</nav>

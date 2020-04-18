@@ -1,0 +1,83 @@
+{#
+# Home Page Template
+# ---------------
+#
+#}
+
+{# ----- Import Any Required Macros ----- #}
+
+
+{# ----- Prepare Data ----- #}
+
+
+{% set teamMemberParam =  craft.app.request.getParam('type') %}
+{% set teamMemberCategory = craft.categories.slug(teamMemberParam).one() %}
+
+{% set pageTitle = "Our Team | Bowery Capital" %}
+{% set metaDescription = "Meet the Bowery Capital team. We bring significant expertise in support of founders that are building the next generation of B2B market leaders." %}
+{% set bodyClass =  'team index' %}
+{% set indexPage = true %}
+
+{% if ( teamMemberParam is defined and teamMemberParam!="" ) %}
+  {% set entries = craft.entries().section('team').type(['team']).relatedTo(teamMemberCategory).showInChannel(1).orderBy('postDate desc').all() %}
+{% else %}
+  {% set entries = craft.entries().section('team').type(['team']).orderBy('postDate desc').all() %}
+{% endif %}
+
+{% extends "layouts/_baseLayout" %}
+
+{% block headAdditions %}
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5/dat.gui.min.js"></script>
+{% endblock %}
+
+
+{# ----- Build Data ----- #}
+
+{% block content %}
+  <section class="block--bg-grey-cool block--paddingXL text-center">
+    <div class="category__large category color--tan">Our Portfolio</div>
+    <h1>Powerful Headline</h1>
+  </section>
+  <section class="block--paddingLG card__team--container">
+    <div class="container">
+      <div class="row">
+        {% for entry in entries %}
+          <div class="col-lg-3 col-md-4 col-sm-6 block--margin-bottomLG">
+            <div class="card__team">
+              <div class="card__team--preview">
+                <img src="{{entry.headshot.one() != null ? entry.headshot.one().url}}" alt="{{entry.title}}" />
+              </div>
+              <div class="card__team--info">
+                <p class="card__team--name">{{ entry.title }}</p>
+                <p class="card__team--title">{{ entry.jobTitle }}</p>
+              </div>
+              <div class="card__team--popout">
+                <div class="card__team--popout--content">
+                  <div class="card__team--popout--thumb d-flex align-items-center">
+                    <img src="{{entry.headshot.one() != null ? entry.headshot.one().url}}" alt="{{entry.title}}" />
+                    <div class="card__team--info d-flex flex-column justify-content-around">
+                      <div class="">
+                        <p class="card__team--name">{{ entry.title }}</p>
+                        <p class="card__team--title">{{ entry.jobTitle }}</p>
+                      </div>
+                      <div class="card__team--social d-flex align-items-center">
+                        {% if entry.twitterUrl != '' %}<a href="{{ entry.twitterUrl }}" target="_blank">{% include "components/svg/twitter.svg" %}</a>{% endif %}
+                        {% if entry.facebookUrl != '' %}<a href="{{ entry.facebookUrl }}" target="_blank">{% include "components/svg/facebook.svg" %}</a>{% endif %}
+                        {% if entry.linkedinUrl != '' %}<a href="{{ entry.linkedinUrl }}" target="_blank">{% include "components/svg/linkedin.svg" %}</a>{% endif %}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card__team--bio">
+                    <p>{{ entry.bio }}</p>
+                  </div>
+                  <div class="card__team--popout--close">{% include "components/svg/close.svg" %}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

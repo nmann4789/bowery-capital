@@ -1,0 +1,20 @@
+{% set heroText = "" %}
+{% if entry.heroTitle == "" %}
+  {% set heroText = entry.title %}
+{% else %}
+  {% set heroText = entry.heroTitle %}
+{% endif %}
+
+<div class="card__featured d-flex">
+  <div class="card__thumb">
+    <a href="{{ entry.url }}"><img src="/temp/thumbs/card-thumb.jpg" alt="test"></a>
+  </div>
+  <div class="card__content block--padding block--padding-horizontal">
+    <div class="category color--olive">{{ entry.blogCategory.one().title }}</div>
+    <h2 class="card__content__title"><a href="{{ entry.url }}">{{ heroText }}</a></h2>
+    <p class="card__content__description">{{ entry.shortDescription }}</p>
+    <div class="">
+      <a class="button button--light--arrow" href="{{ entry.url }}">Learn More</a>
+    </div>
+  </div>
+</div>
