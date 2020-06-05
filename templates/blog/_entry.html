@@ -76,7 +76,7 @@
     <section class="block--padding-horizontalSM block--bg-grey">
       <div class="container">
         <div class="row">
-          {% include "components/nav/_subnavBlog.html" with {categories:craft.categories.group('blogCategory')} %}
+          {% include "components/nav/_subnavBlog.html" with {categories:craft.categories.group('blogCategory').limit(5)} %}
           <div class="col-md-4 d-flex align-items-center justify-content-end ">
             <form action="{{ url('search/results') }}" class="d-flex align-items-center justify-content-end search-form closed">
               <input type="search" name="q" placeholder="Search">
@@ -114,16 +114,23 @@
     <section class="block--padding border-bottom__gray">
       <div class="container block--margin-bottom">
         <div class="row">
-          <div class="col-md-8"></div>
+          <div class="col-md-8">
+            {% for block in entry.contentBuilder %}
+              {% include "components/content-builder/"~block.type~".html" with {content:block} %}
+            {% endfor %}
+          </div>
           <div class="col-md-3 offset-md-1">
+            {% if entry.blogCategory.one() is not null and entry.blogCategory.one().title == "Podcast" %}
             <div class="border-bottom__gray">
               <a href="#"><img src="/template-img/logos/bowery-podcast.jpg" alt="Bowery Capital - Startup Sales Podcast"></a>
             </div>
+            {% endif %}
             <div class="article__meta">
               <p class="article__meta--date">{{ entry.postDate | date('F d, Y') }}</p>
               <div class="article__meta--topics">
-                <a href="#" class="article__meta--topic">Podcast</a>
-                <a href="#" class="article__meta--topic">Podcast</a>
+                {% for category in entry.blogCategory %}
+                <a href="{{ siteUrl ~ "blog?topic=" ~ category.slug }}" class="article__meta--topic">{{ category.title }}</a>
+                {% endfor %}
               </div>
             </div>
           </div>

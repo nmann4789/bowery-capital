@@ -1,61 +1,66 @@
-img{
-  width:100%;
-  max-width:100%;
+img {
+  width: 100%;
+  max-width: 100%;
   display: block;
 }
 
-.color{
-  &--white{
+iframe {
+  min-height: 200px !important;
+  max-width: 100% !important;
+}
+
+.color {
+  &--white {
     color: $white !important;
   }
-  &--white-soft{
+  &--white-soft {
     color: $white-soft !important;
   }
-  &--tan{
+  &--tan {
     color: $tan !important;
   }
-  &--olive{
+  &--olive {
     color: $olive !important;
   }
-  &--navy{
+  &--navy {
     color: $navy !important;
   }
-  &--grey-dark{
+  &--grey-dark {
     color: $grey-dark !important;
   }
-  &--black{
+  &--black {
     color: $black !important;
   }
 }
 
-.border-bottom{
-  &__gray{
-    border-bottom:1px solid #efefef;
+.border-bottom {
+  &__gray {
+    border-bottom: 1px solid #efefef;
   }
 }
 
-.text{
-  &-right{
+.text {
+  &-right {
     text-align: right;
   }
-  &-center{
+  &-center {
     text-align: center;
   }
 }
 
-.edit-entry{
+.edit-entry {
   position: fixed;
   width: 100%;
-  bottom:0;
-  left:0;
+  bottom: 0;
+  left: 0;
   background-color: $tan;
   color: #fff;
   text-align: center;
   z-index: 10000;
-  a{
+  a {
     font-weight: bold;
     text-decoration: underline;
-    &:hover{
+    &:hover {
       text-decoration: none;
     }
   }

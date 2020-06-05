@@ -1,4 +1,4 @@
-.button{
+.button {
   font-family: Helvetica Neue;
   font-style: normal;
   font-weight: bold;
@@ -8,27 +8,27 @@
   text-transform: uppercase;
   text-decoration: none;
   display: inline-block;
-  padding:7px 20px 7px 10px;
+  padding: 7px 20px 7px 10px;
   position: relative;
   z-index: 2;
-  &--light{
-    &--arrow{
-      color:$navy;
-      &:hover{
-        &:before{
-          width:100%;
+  &--light {
+    &--arrow {
+      color: $navy;
+      &:hover {
+        &:before {
+          width: 100%;
         }
       }
-      &:before{
+      &:before {
         position: absolute;
-        content:'';
-        top:0;
-        bottom:0;
-        left:0;
-        width:15%;
+        content: "";
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 15%;
         z-index: -1;
         transition: all 1s;
-        background-color: lighten($tan, 25%);
+        background-color: #e9ece7;
       }
       &:after {
         content: url(/template-img/svg/arrow-navy.svg);
@@ -43,24 +43,24 @@
     }
   }
 
-  &--dark{
-    &--arrow{
-      color:$white;
-      &:hover{
-        &:before{
-          width:100%;
+  &--dark {
+    &--arrow {
+      color: $white;
+      &:hover {
+        &:before {
+          width: 100%;
         }
       }
-      &:before{
+      &:before {
         position: absolute;
-        content:'';
-        top:0;
-        bottom:0;
-        left:0;
-        width:15%;
+        content: "";
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 15%;
         z-index: -1;
         transition: all 1s;
-        background-color: rgba(255,255,255,0.3);
+        background-color: rgba(255, 255, 255, 0.3);
       }
       &:after {
         content: url(/template-img/svg/arrow-white.svg);
@@ -75,16 +75,16 @@
     }
   }
 
-  &--alternate{
+  &--alternate {
     font-family: Helvetica Neue;
     font-style: normal;
     font-weight: 500;
     font-size: 21px;
     line-height: 32px;
-    padding-bottom:7px;
-    border-bottom:2px solid;
-    &:hover{
-      border-bottom:none;
+    padding-bottom: 7px;
+    border-bottom: 2px solid;
+    &:hover {
+      border-bottom: none;
     }
   }
 }

@@ -10,7 +10,7 @@
     <a href="{{ entry.url }}"><img src="/temp/thumbs/card-thumb.jpg" alt="test"></a>
   </div>
   <div class="card__content block--padding block--padding-horizontal">
-    <div class="category color--olive">{{ entry.blogCategory.one().title }}</div>
+    <div class="category color--olive">{{ entry.blogCategory.one() is not null ? entry.blogCategory.one().title }}</div>
     <h2 class="card__content__title"><a href="{{ entry.url }}">{{ heroText }}</a></h2>
     <p class="card__content__description">{{ entry.shortDescription }}</p>
     <div class="">

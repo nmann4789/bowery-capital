@@ -1,17 +1,17 @@
-header{
-  nav{
-    ul{
-      margin:0;
-      li{
+header {
+  nav {
+    ul {
+      margin: 0;
+      li {
         list-style-type: none;
-        a{
+        a {
           text-decoration: none;
           display: block;
-          padding:5px 15px;
-          color:$grey-dark;
+          padding: 5px 15px;
+          color: $white;
           transition: all 300ms;
-          &:hover{
-            color:lighten($grey-dark, 40%)
+          &:hover {
+            color: lighten($grey-dark, 40%);
           }
         }
       }
@@ -19,22 +19,22 @@ header{
   }
 }
 
-.header__sub{
-  ul{
-    margin:0;
-    padding:0;
-    li{
+.header__sub {
+  ul {
+    margin: 0;
+    padding: 0;
+    li {
       list-style-type: none;
-      a{
+      a {
         text-decoration: none;
         display: block;
-        padding:15px 30px 13px 0;
-        color:$grey-dark;
+        padding: 15px 30px 13px 0;
+        color: $grey-dark;
         transition: all 300ms;
-        &:hover{
-          color:lighten($grey-dark, 40%)
+        &:hover {
+          color: lighten($grey-dark, 40%);
         }
-        &.active{
+        &.active {
           font-weight: 500;
           position: relative;
           top: -1px;
