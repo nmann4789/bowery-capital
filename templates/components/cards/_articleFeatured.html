@@ -5,14 +5,21 @@
   {% set heroText = entry.heroTitle %}
 {% endif %}
 
+{% set heroImageUrl = "" %}
+{% for block in entry.entryImages.all() %}
+  {% if block.heroImage.one()|length %}
+    {% set heroImageUrl = block.heroImage.one() %}
+  {% endif %}
+{% endfor %}
+
 <div class="card__featured d-flex">
   <div class="card__thumb">
-    <a href="{{ entry.url }}"><img src="/temp/thumbs/card-thumb.jpg" alt="test"></a>
+    <a href="{{ entry.url }}"><img src="{{ heroImageUrl != "" ? heroImageUrl.getUrl('heroImage') }}" alt="{{ entry.title }}"></a>
   </div>
   <div class="card__content block--padding block--padding-horizontal">
     <div class="category color--olive">{{ entry.blogCategory.one() is not null ? entry.blogCategory.one().title }}</div>
     <h2 class="card__content__title"><a href="{{ entry.url }}">{{ heroText }}</a></h2>
-    <p class="card__content__description">{{ entry.shortDescription }}</p>
+    <p class="card__content__description">{{ entry.shortDescription | raw }}</p>
     <div class="">
       <a class="button button--light--arrow" href="{{ entry.url }}">Learn More</a>
     </div>

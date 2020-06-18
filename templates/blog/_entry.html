@@ -22,16 +22,31 @@
     {% set heroText = entry.heroTitle %}
   {% endif %}
 
-  {% set imageUrl = "" %}
-  {#{% for image in entry.heroImage.all() %}#}
-    {#{% set imageUrl = image.getUrl('indexThumbnailTransform') |raw |default("") %}#}
-  {#{% endfor %}#}
+  {% set heroImageUrl = "" %}
+  {% for block in entry.entryImages.all() %}
+    {% if block.heroImage.one()|length %}
+      {% set heroImageUrl = block.heroImage.one() %}
+    {% endif %}
+  {% endfor %}
+
+  {% set query = craft.entries
+    .section('blog')
+    .id('not ' ~ entry.id)
+    .limit(1) %}
+
+  {% set blogCategory = entry.blogCategory.one() is defined ? entry.blogCategory.one() %}
+
+  {% set nextEntries = clone(query)
+    .relatedTo(blogCategory)
+    .postDate('>= ' ~ entry.postDate.timestamp)
+    .order('postDate asc')
+    .limit(3) %}
 
   {% extends "layouts/_baseLayout" %}
 
   {% block headAdditions %}
-    <meta property="og:image" content="{{ imageUrl }}">
-    <meta name="twitter:image" content="{{ imageUrl }}"/>
+    <meta property="og:image" content="{{ heroImageUrl != "" ? heroImageUrl.getUrl('cardThumbnail') }}">
+    <meta name="twitter:image" content="{{ heroImageUrl != "" ? heroImageUrl.getUrl('cardThumbnail') }}"/>
     <link rel="amphtml" href="{{ entry.url~"/amp" }}">
     <script type="application/ld+json">
     {
@@ -40,7 +55,7 @@
         "headline": "{{ entry.title }}",
         "image": {
           "@type": "ImageObject",
-          "url": "{{ imageUrl }}",
+          "url": "{{ heroImageUrl != "" ? heroImageUrl.getUrl('cardThumbnail') }}",
           "width": 696,
           "height": 392
         },
@@ -94,7 +109,7 @@
               <div class="card__content">
                 <div class="category color--olive">Finance</div>
                 <h2 class="card__content__title">{{ entry.title }}</h2>
-                <p class="card__content__description block--margin-bottomSM">{{ entry.shortDescription }}</p>
+                <p class="card__content__description block--margin-bottomSM">{{ entry.shortDescription | raw }}</p>
                 <div class="card__content__author">
                   <img src="/temp/thumbs/card-thumb.jpg" alt="test" class="card__content__author__thumb">
                   <div class="card__content__author__info">
@@ -106,7 +121,7 @@
             </div>
           </div>
           <div class="col-md-6">
-            <img src="/temp/thumbs/card-thumb.jpg" alt="test">
+            <img src="{{ heroImageUrl != "" ? heroImageUrl.getUrl('heroImage') }}" alt="{{ entry.url }}">
           </div>
         </div>
       </div>
@@ -143,57 +158,11 @@
           <div class="col-md-12 text-center block--margin-bottomLG">
             <h2>You might also like...</h2>
           </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="card">
-              <div class="card__thumb block--margin-bottomSM">
-                <a href="/"><img src="/temp/thumbs/card-thumb.jpg" alt="test"></a>
-              </div>
-              <div class="card__content block--margin-bottomSM">
-                <div class="category">Finance</div>
-                <h3 class="card__content__title"><a href="/">Test Title</a></h3>
-                <p class="card__content__description color--grey-dark">
-                  We’re pleased to announce the Bowery Capital 2019 Startup Sales Stack Report! Please check  it out below. This report is meant to serve as a guiding framework for anyone evaluating sales solutions. Startup Sales Stack Report! Please  check it out below. This report is meant to serve  as a guiding
-                </p>
-              </div>
-              <div class="">
-                <a class="button button--light--arrow" href="/">Learn More</a>
-              </div>
+          {% for entry in nextEntries %}
+            <div class="col-md-6 col-lg-4">
+              {% include "components/cards/_article.html" with {entry: entry} %}
             </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="card">
-              <div class="card__thumb block--margin-bottomSM">
-                <a href="/"><img src="/temp/thumbs/card-thumb.jpg" alt="test"></a>
-              </div>
-              <div class="card__content block--margin-bottomSM">
-                <div class="category">Finance</div>
-                <h3 class="card__content__title"><a href="/">Test Title</a></h3>
-                <p class="card__content__description color--grey-dark">
-                  We’re pleased to announce the Bowery Capital 2019 Startup Sales Stack Report! Please check  it out below. This report is meant to serve as a guiding framework for anyone evaluating sales solutions. Startup Sales Stack Report! Please  check it out below. This report is meant to serve  as a guiding
-                </p>
-              </div>
-              <div class="">
-                <a class="button button--light--arrow" href="/">Learn More</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="card">
-              <div class="card__thumb block--margin-bottomSM">
-                <a href="/"><img src="/temp/thumbs/card-thumb.jpg" alt="test"></a>
-              </div>
-              <div class="card__content block--margin-bottomSM">
-                <div class="category">Finance</div>
-                <h3 class="card__content__title"><a href="/">Test Title</a></h3>
-                <p class="card__content__description color--grey-dark">
-                  We’re pleased to announce the Bowery Capital 2019 Startup Sales Stack Report! Please check  it out below. This report is meant to serve as a guiding framework for anyone evaluating sales solutions. Startup Sales Stack Report! Please  check it out below. This report is meant to serve  as a guiding
-                </p>
-              </div>
-              <div class="">
-                <a class="button button--light--arrow" href="/">Learn More</a>
-              </div>
-            </div>
-          </div>
+          {% endfor %}
         </div>
       </div>
     </section>

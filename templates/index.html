@@ -15,7 +15,7 @@
 {% set bodyClass = "home" %}
 {% set hideFooterDemo = true %}
 {% set indexPage = true %}
-{% set recentBlogs = craft.entries().section('blog').type(['blog']).showInChannel(1).orderBy('postDate desc').limit(4) %}
+{% set recentBlogs = craft.entries().section('blog').type(['blog']).showInChannel(1).orderBy('postDate desc').limit(6) %}{% set nextBlogs = craft.entries().section('blog').type(['blog']).showInChannel(1).orderBy('postDate desc').limit(4) %}
 {% extends "layouts/_baseLayout" %}
 
 
@@ -161,34 +161,11 @@
         <div class="col-md-8">
           <h2 class="block--margin-bottom">News & Insights</h2>
           <div class="row">
+            {% for entry in recentBlogs|slice(0, 2) %}
             <div class="col-md-6">
-              <div class="card">
-                <div class="card__thumb block--margin-bottomSM">
-                  <a href="/"><img src="/temp/thumbs/card-thumb.jpg" alt="test"></a>
-                </div>
-                <div class="card__content block--margin-bottomSM">
-                  <div class="category">Finance</div>
-                  <h3 class="card__content__title"><a href="/">Test Title</a></h3>
-                </div>
-                <div class="">
-                  <a class="button button--light--arrow" href="/">Read More</a>
-                </div>
-              </div>
+              {% include "components/cards/_article.html" with {entry: entry} %}
             </div>
-            <div class="col-md-6">
-              <div class="card">
-                <div class="card__thumb block--margin-bottomSM">
-                  <a href="/"><img src="/temp/thumbs/card-thumb.jpg" alt="test"></a>
-                </div>
-                <div class="card__content block--margin-bottomSM">
-                  <div class="category">Finance</div>
-                  <h3 class="card__content__title"><a href="/">Test Title</a></h3>
-                </div>
-                <div class="">
-                  <a class="button button--light--arrow" href="/">Read More</a>
-                </div>
-              </div>
-            </div>
+            {% endfor %}
           </div>
         </div>
         <div class="col-md-4">
@@ -197,14 +174,20 @@
           </div>
           <div class="articles__more">
             <div class="articles__more--heading border-bottom__gray">Most Recent</div>
-            {% for entry in recentBlogs %}
+            {% for entry in recentBlogs|slice(2, 4) %}
+              {% set heroImageUrl = "" %}
+              {% for block in entry.entryImages.all() %}
+                {% if block.thumbnailImages.one()|length %}
+                  {% set heroImageUrl = block.thumbnailImages.one() %}
+                {% endif %}
+              {% endfor %}
               <div class="card card__mini">
                 <div class="card__content">
                   <div class="category category__short">{{ entry.blogCategory.one() is defined ? entry.blogCategory.one() }}</div>
                   <h3 class="card__content__title"><a href="{{ entry.url }}">{{ entry.title }}</a></h3>
                 </div>
                 <div class="card__thumb">
-                  <a href="{{ entry.url }}"><img src="/temp/thumbs/card-thumb.jpg" alt="test"></a>
+                  <a href="{{ entry.url }}"><img src="{{ heroImageUrl != "" ? heroImageUrl.getUrl('cardThumbnail') }}" alt="{{ entry.title }}"></a>
                 </div>
               </div>
             {% endfor %}

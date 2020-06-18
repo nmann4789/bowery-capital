@@ -5,14 +5,20 @@
     {% set heroText = entry.heroTitle %}
   {% endif %}
 
+{% set heroImageUrl = "" %}
+{% for block in entry.entryImages.all() %}
+  {% if block.thumbnailImages.one()|length %}
+    {% set heroImageUrl = block.thumbnailImages.one() %}
+  {% endif %}
+{% endfor %}
 <div class="card">
   <div class="card__thumb block--margin-bottomSM">
-    <a href="{{ entry.url }}"><img src="/temp/thumbs/card-thumb.jpg" alt="test"></a>
+    <a href="{{ entry.url }}"><img src="{{ heroImageUrl != "" ? heroImageUrl.getUrl('cardThumbnail') }}" alt="{{ entry.title }}"></a>
   </div>
   <div class="card__content block--margin-bottomSM">
     <div class="category">{{ entry.blogCategory.one() != null ? entry.blogCategory.one().title }}</div>
     <h3 class="card__content__title"><a href="{{ entry.url }}">{{ heroText }}</a></h3>
-    <p class="card__content__description color--grey-dark">{{ entry.shortDescription }}</p>
+    <p class="card__content__description color--grey-dark">{{ entry.shortDescription | raw }}</p>
   </div>
   <div class="">
     <a class="button button--light--arrow" href="{{ entry.url }}">Learn More</a>
