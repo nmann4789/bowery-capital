@@ -22,7 +22,7 @@
       </div>
       <nav class="col-md-10 align-self-center">
         <ul class="d-flex justify-content-center justify-content-md-end">
-          <li><a href="#value-add" class="scroll-to-div">Value Add</a></li>
+          <li><a href="{{ url(craft.app.request.pathInfo) == siteUrl ? '#value-add' : siteUrl~'#value-add' }}" class="{{ url(craft.app.request.pathInfo) == siteUrl ? 'scroll-to-div' }}">Value Add</a></li>
           <li><a href="/blog">Blog</a></li>
           <li><a href="/portfolio">Portfolio</a></li>
           <li><a href="/team">Team</a></li>

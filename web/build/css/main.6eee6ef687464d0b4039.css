@@ -3826,6 +3826,9 @@ iframe {
 .block--bg-tan {
   background-color: #cfd4cb;
 }
+.block--bg-tan-light {
+  background-color: #e9ece7;
+}
 .block--bg-white {
   background-color: #eeedee;
 }

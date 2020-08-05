@@ -114,7 +114,7 @@
                 <h2 class="card__content__title">{{ entry.title }}</h2>
                 <div class="article__meta">
                   <p class="article__meta--date">{{ entry.postDate | date('F d, Y') }}</p>
-                  <div class="article__meta--topics">
+                  <div class="article__meta--topics block--margin-bottomSM">
                     {% for category in entry.blogCategory %}
                       <a href="{{ siteUrl ~ "blog?topic=" ~ category.slug }}" class="article__meta--topic">{{ category.title }}</a>
                     {% endfor %}
