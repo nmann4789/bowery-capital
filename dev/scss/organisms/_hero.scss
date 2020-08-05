@@ -1,10 +1,19 @@
 .hero {
   position: relative;
+
+  @media (max-width: 767px) {
+    padding-top: 0px !important;
+    text-align: center;
+  }
+
   canvas {
-    position: absolute;
-    cursor: crosshair;
-    left: 50%;
-    top: 0%;
-    height: 100%;
+    //position: absolute;
+    //cursor: crosshair;
+    //left: 50%;
+    //top: 0%;
+    //height: 100%;
+    @media (max-width: 991px) {
+      opacity: 0;
+    }
   }
 }

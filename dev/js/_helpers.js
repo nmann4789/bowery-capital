@@ -91,7 +91,7 @@ const _helpers = {
     })
   },
   init: function () {
-
+    this.scrollToDiv()
   }
 }
 

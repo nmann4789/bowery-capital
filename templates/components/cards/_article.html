@@ -1,6 +1,6 @@
 {% set heroText = "" %}
   {% if entry.heroTitle=="" %}
-    {% set heroText = entry.title %}
+    {% set heroText = entry.title | raw %}
   {% else %}
     {% set heroText = entry.heroTitle %}
   {% endif %}

@@ -36,7 +36,7 @@
 {% block content %}
 <section class="block--bg-grey-cool block--paddingXL text-center">
   <div class="category__large category color--tan">Our Portfolio</div>
-  <h1>Powerful Headline</h1>
+  <h1>{{ editableHeroText.portfolioHeroText }}</h1>
 </section>
 <section class="block--padding">
   <div class="container">
@@ -63,7 +63,7 @@
               </div>
               <div class="block--padding-horizontalSM block--margin-bottom">
                 <p class="card__portfolio--popout--it">{{ entry.investmentType.title }}</p>
-                <p class="card__portfolio--popout--desc">{{ entry.shortDescription }}</p>
+                <p class="card__portfolio--popout--desc">{{ entry.shortDescription | raw }}</p>
                 <div class="card__portfolio--popout--yi">{% include "components/svg/dollar.svg" %} Invested in {{ entry.yearInvested }}</div>
                 <div class="article__meta block--margin-bottom">
                   <div class="article__meta--topics">

@@ -45,7 +45,7 @@
   <div class="container">
     <div class="row">
       {% include "components/nav/_subnavBlog.html" with {categories:craft.categories.group('blogCategory').limit(5)} %}
-      <div class="col-md-4 d-flex align-items-center justify-content-end ">
+      <div class="col-md-4 d-flex align-items-center justify-content-end hidden-md-down">
         <form action="{{ url('search/results') }}" class="d-flex align-items-center justify-content-end search-form closed">
           <input type="search" name="q" placeholder="{{ searchParam }}">
           <button type="submit">{% include "components/svg/search.svg" %}</button>
@@ -55,8 +55,8 @@
   </div>
 </section>
 {% if searchParam|length == 0 and featuredEntry|length > 0 %}
-<section class="block--margin-bottom">
-  <div class="container-fluid">
+<section class="block--padding">
+  <div class="container">
     <div class="row">
       <div class="col-md-12 block--padding-none">
         {% include "components/cards/_articleFeatured.html" with {entry: featuredEntry} %}

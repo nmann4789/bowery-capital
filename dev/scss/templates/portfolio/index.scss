@@ -1,3 +1,11 @@
+.portfolio {
+  &.index {
+    h1 {
+      font-size: 50px;
+    }
+  }
+}
+
 .card {
   &__portfolio {
     &--container {

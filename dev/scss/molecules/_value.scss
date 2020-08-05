@@ -1,30 +1,28 @@
-.value{
-  &__section{
-    &--heading{
+.value {
+  &__section {
+    &--heading {
       font-style: normal;
       font-weight: bold;
       font-size: 60px;
       line-height: 120.6%;
     }
-    .card{
-      &__content{
-        &__title{
+    .card {
+      &__content {
+        &__title {
           font-family: Merriweather;
           font-style: normal;
           font-weight: bold;
         }
-        &__description{
-          font-weight: normal;
+        &__description {
+          font-family: Helvetica Neue;
+          font-style: normal;
+          font-weight: 300;
+          font-size: 16px;
           line-height: 24px;
         }
       }
-      &__thumb{
+      &__thumb {
         text-align: right;
-        img{
-          width:60%;
-          margin-left: auto;
-          margin-right: 0;
-        }
       }
     }
   }

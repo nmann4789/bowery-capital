@@ -16,7 +16,7 @@
   <div class="card__thumb">
     <a href="{{ entry.url }}"><img src="{{ heroImageUrl != "" ? heroImageUrl.getUrl('heroImage') }}" alt="{{ entry.title }}"></a>
   </div>
-  <div class="card__content block--padding block--padding-horizontal">
+  <div class="card__content block--padding-horizontal">
     <div class="category color--olive">{{ entry.blogCategory.one() is not null ? entry.blogCategory.one().title }}</div>
     <h2 class="card__content__title"><a href="{{ entry.url }}">{{ heroText }}</a></h2>
     <p class="card__content__description">{{ entry.shortDescription | raw }}</p>

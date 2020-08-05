@@ -105,50 +105,51 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
+            <img src="{{ heroImageUrl != "" ? heroImageUrl.getUrl('heroImage') }}" alt="{{ entry.url }}">
+          </div>
+          <div class="col-md-6">
             <div class="card__featured d-flex">
               <div class="card__content">
-                <div class="category color--olive">Finance</div>
+                <div class="category color--olive">{{ entry.blogCategory.one() is not null ? entry.blogCategory.one().title }}</div>
                 <h2 class="card__content__title">{{ entry.title }}</h2>
-                <p class="card__content__description block--margin-bottomSM">{{ entry.shortDescription | raw }}</p>
+                <div class="article__meta">
+                  <p class="article__meta--date">{{ entry.postDate | date('F d, Y') }}</p>
+                  <div class="article__meta--topics">
+                    {% for category in entry.blogCategory %}
+                      <a href="{{ siteUrl ~ "blog?topic=" ~ category.slug }}" class="article__meta--topic">{{ category.title }}</a>
+                    {% endfor %}
+                  </div>
+                </div>
                 <div class="card__content__author">
-                  <img src="/temp/thumbs/card-thumb.jpg" alt="test" class="card__content__author__thumb">
+                  {% set headshotUrl = entry.blogAuthor.one() is not null ? entry.blogAuthor.one().headshot.one().url : '' %}
+                  <img src="{{ headshotUrl }}" alt="test" class="card__content__author__thumb">
                   <div class="card__content__author__info">
-                    <p class="card__content__author__name color--navy">Loren Straub</p>
-                    <p class="card__content__author__title">Principal, Partner</p>
+                    <p class="card__content__author__name color--navy">{{ entry.blogAuthor.one() is not null ? entry.blogAuthor.one().title }}</p>
+                    <p class="card__content__author__title">{{ entry.blogAuthor.one() is not null ? entry.blogAuthor.one().jobTitle }}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-md-6">
-            <img src="{{ heroImageUrl != "" ? heroImageUrl.getUrl('heroImage') }}" alt="{{ entry.url }}">
-          </div>
         </div>
       </div>
     </section>
-    <section class="block--padding border-bottom__gray">
+    <section class="block--padding border-bottom__gray article__body">
       <div class="container block--margin-bottom">
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-10">
             {% for block in entry.contentBuilder %}
               {% include "components/content-builder/"~block.type~".html" with {content:block} %}
             {% endfor %}
           </div>
-          <div class="col-md-3 offset-md-1">
-            {% if entry.blogCategory.one() is not null and entry.blogCategory.one().title == "Podcast" %}
-            <div class="border-bottom__gray">
-              <a href="#"><img src="/template-img/logos/bowery-podcast.jpg" alt="Bowery Capital - Startup Sales Podcast"></a>
-            </div>
-            {% endif %}
-            <div class="article__meta">
-              <p class="article__meta--date">{{ entry.postDate | date('F d, Y') }}</p>
-              <div class="article__meta--topics">
-                {% for category in entry.blogCategory %}
-                <a href="{{ siteUrl ~ "blog?topic=" ~ category.slug }}" class="article__meta--topic">{{ category.title }}</a>
-                {% endfor %}
-              </div>
-            </div>
-          </div>
+{#          <div class="col-md-3 offset-md-1">#}
+{#            {% if entry.blogCategory.one() is not null and entry.blogCategory.one().title == "Podcast" %}#}
+{#            <div class="border-bottom__gray">#}
+{#              <a href="#"><img src="/template-img/logos/bowery-podcast.jpg" alt="Bowery Capital - Startup Sales Podcast"></a>#}
+{#            </div>#}
+{#            {% endif %}#}
+{#            </div>#}
+{#          </div>#}
         </div>
       </div>
     </section>

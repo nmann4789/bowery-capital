@@ -27,7 +27,7 @@
         left: 0;
         width: 15%;
         z-index: -1;
-        transition: all 1s;
+        transition: all 600ms;
         background-color: #e9ece7;
       }
       &:after {
@@ -59,7 +59,7 @@
         left: 0;
         width: 15%;
         z-index: -1;
-        transition: all 1s;
+        transition: all 600ms;
         background-color: rgba(255, 255, 255, 0.3);
       }
       &:after {
