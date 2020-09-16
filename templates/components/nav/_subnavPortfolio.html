@@ -1,8 +1,22 @@
-<nav class="col-md-8 align-self-center header__sub">
-  <ul class="d-flex">
-    <li><a href="{{ siteUrl ~ 'portfolio' }}" class="category__filter  {{ not activeCategory ? 'active' }}" data-category="">All</a></li>
-    {% for topic in categories %}
-      <li><a href="{{ siteUrl ~ "portfolio?type=" ~ topic.slug }}" class="category__filter {{ activeCategory == topic.slug ? 'active' }}" data-category="{{ topic.slug }}">{{ topic.title }}</a></li>
+{% set groups = craft.categories.group( 'portfolioFilterGroups' ).all() %}
+
+
+<div class="col-md-8 offset-md-2 align-self-center header__sub">
+  <div class="header__sub--door color--white text-center">
+    Filters <span class="header__sub--door--state header__sub--door--open">+</span><span class="header__sub--door--state header__sub--door--close">-</span>
+  </div>
+  <div class="header__sub--options hidden">
+    <div class="hidden"><a href="{{ siteUrl ~ 'portfolio' }}" class="category__filter {{ not activeCategory ? 'active' }}" data-category="">All</a></div>
+    {% for group in groups %}
+        {% set groupTopics = categories.relatedTo(group) %}
+        {% if groupTopics | length %}
+            <div class="header__sub--group">
+            <h4 class="color--white">{{ group.title }}</h4>
+            {% for topic in groupTopics %}
+                <div><a href="{{ siteUrl ~ "portfolio?type=" ~ topic.slug }}" class="category__filter color--white {{ activeCategory == topic.slug ? 'active' }}" data-category="{{ topic.slug }}"><span class="radio-button"></span>{{ topic.title }}</a></div>
+            {% endfor %}
+            </div>
+        {% endif %}
     {% endfor %}
-  </ul>
-</nav>
+  </div>
+</div>

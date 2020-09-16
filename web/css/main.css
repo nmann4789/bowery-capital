@@ -560,6 +560,26 @@ a {
   border-bottom: none;
 }
 
+.radio-button {
+  position: absolute;
+  top: -4px;
+  left: -35px;
+  width: 25px;
+  height: 25px;
+  border-radius: 15px;
+  border: 2px solid white;
+}
+.selected .radio-button:after {
+  position: absolute;
+  content: "";
+  width: 15px;
+  height: 15px;
+  background: #cfd4cb;
+  top: 3px;
+  left: 3px;
+  border-radius: 10px;
+}
+
 /*!
  * Bootstrap Grid v4.0.0 (https://getbootstrap.com)
  * Copyright 2011-2018 The Bootstrap Authors
@@ -3574,10 +3594,15 @@ img.height-60 {
   height: 60px;
   width: 60px;
 }
+img.max-height-150 {
+  max-height: 150px;
+  width: auto;
+}
 
 iframe {
   min-height: 200px !important;
   max-width: 100% !important;
+  width: 100%;
 }
 
 .color--white {
@@ -3767,6 +3792,20 @@ iframe {
   width: auto;
 }
 
+.article__body img {
+  margin: 0 30px 0 0;
+  float: left;
+  width: auto;
+}
+
+.article__body a {
+  color: blue;
+  text-decoration: underline;
+}
+.article__body a:hover {
+  text-decoration: none;
+}
+
 .article__meta--date {
   font-size: 14px;
   line-height: 34px;
@@ -3807,6 +3846,10 @@ iframe {
   font-weight: 300;
   font-size: 18px;
   line-height: 26px;
+  color: #1c3e58;
+}
+.search-form input:focus {
+  outline: none;
 }
 
 .search-form button {
@@ -3816,6 +3859,10 @@ iframe {
   border: none;
   position: relative;
   top: 2px;
+  cursor: pointer;
+}
+.search-form button:focus {
+  outline: none;
 }
 
 .card__mini {
@@ -3838,8 +3885,17 @@ iframe {
   min-width: 30%;
   flex-grow: 0;
 }
+.card__mini .card__thumb a {
+  height: auto !important;
+}
 .card__featured .card__thumb {
   flex-grow: 0;
+}
+.card .card__thumb a {
+  height: 260px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 }
 
 .card__content {
@@ -3860,6 +3916,10 @@ iframe {
 }
 .card__content__description {
   font-size: 16px;
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 300;
+  line-height: 28px;
 }
 .card__content__author {
   display: flex;
@@ -3932,7 +3992,7 @@ iframe {
 }
 .card__portfolio--preview img {
   width: auto;
-  max-height: 100%;
+  max-height: 80%;
 }
 .card__portfolio--acquired {
   display: none;
@@ -4024,6 +4084,7 @@ iframe {
   border: 1px solid #cdd3df;
   padding: 15px;
   transition: 1s all;
+  margin-bottom: 15px;
 }
 .card__team--preview:hover {
   border: 1px solid #1c3e58;
@@ -4031,7 +4092,7 @@ iframe {
 }
 
 .card__team--info {
-  padding: 5px 0;
+  padding-left: 15px;
 }
 
 .card__team--name {
@@ -4189,6 +4250,12 @@ iframe {
     padding-top: 0px !important;
     text-align: center;
   }
+}
+.hero canvas {
+  position: absolute;
+  top: -75px;
+  right: -100px;
+  cursor: crosshair;
 }
 @media (max-width: 991px) {
   .hero canvas {
@@ -4399,6 +4466,63 @@ header nav ul li a:hover {
   color: #919191;
 }
 
+.header__sub--door {
+  font-family: Helvetica Neue;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 32px;
+  text-align: center;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.header__sub--door--state {
+  position: relative;
+  top: -2px;
+}
+.header__sub--door--state.header__sub--door--close {
+  display: none;
+}
+.header__sub--door.open .header__sub--door--close {
+  display: inline;
+}
+.header__sub--door.open .header__sub--door--open {
+  display: none;
+}
+
+.header__sub--options {
+  display: flex;
+  justify-content: space-around;
+}
+.header__sub--options.hidden {
+  display: none;
+}
+.header__sub--options > div {
+  padding: 10px 0 10px 0px;
+}
+.header__sub--options > div a {
+  font-family: Helvetica Neue;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  position: relative;
+}
+
+.header__sub--group h4 {
+  text-transform: uppercase;
+  font-family: Helvetica Neue;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  position: relative;
+  left: -35px;
+}
+
+.header__sub--group > div {
+  margin-bottom: 25px;
+}
+
 .header__sub ul {
   margin: 0;
   padding: 0;
@@ -4454,7 +4578,7 @@ footer ul li a:hover {
 
 @media (min-width: 576px) and (max-width: 767px) {
   .card__portfolio--container
-    .col-sm-6.pos-adjusted:nth-child(2n)
+    .col-sm-6.pos-adjusted:not(.hidden):nth-child(2n)
     .card__portfolio--popout {
     left: auto;
     right: -1px;
@@ -4463,7 +4587,7 @@ footer ul li a:hover {
 
 @media (max-width: 575px) {
   .card__portfolio--container
-    .col-sm-6.pos-adjusted:nth-child(n)
+    .col-sm-6.pos-adjusted:not(.hidden):nth-child(n)
     .card__portfolio--popout {
     left: auto;
     right: -1px;
@@ -4473,7 +4597,7 @@ footer ul li a:hover {
 
 @media (min-width: 768px) and (max-width: 991px) {
   .card__portfolio--container
-    .col-md-4.pos-adjusted:nth-child(3n)
+    .col-md-4.pos-adjusted:not(.hidden):nth-child(3n)
     .card__portfolio--popout {
     left: auto;
     right: -1px;
@@ -4482,7 +4606,7 @@ footer ul li a:hover {
 
 @media (min-width: 992px) {
   .card__portfolio--container
-    .col-lg-3.pos-adjusted:nth-child(4n)
+    .col-lg-3.pos-adjusted:not(.hidden):nth-child(4n)
     .card__portfolio--popout {
     left: auto;
     right: -1px;

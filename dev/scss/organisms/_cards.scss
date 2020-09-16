@@ -16,10 +16,22 @@
       width: 100px;
       min-width: 30%;
       flex-grow: 0;
+      a {
+        height: auto !important;
+      }
     }
 
     .card__featured & {
       flex-grow: 0;
+    }
+
+    .card & {
+      a {
+        height: 260px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+      }
     }
   }
   &__content {
@@ -45,6 +57,10 @@
 
     &__description {
       font-size: 16px;
+      font-family: "Helvetica Neue";
+      font-style: normal;
+      font-weight: 300;
+      line-height: 28px;
     }
 
     &__author {
@@ -118,7 +134,7 @@
       }
       img {
         width: auto;
-        max-height: 100%;
+        max-height: 80%;
       }
     }
     &--acquired {
@@ -212,13 +228,14 @@
       border: 1px solid $grey-medium;
       padding: 15px;
       transition: 1s all;
+      margin-bottom: 15px;
       &:hover {
         border: 1px solid $navy;
         cursor: pointer;
       }
     }
     &--info {
-      padding: 5px 0;
+      padding-left: 15px;
     }
     &--name {
       font-family: Helvetica Neue;

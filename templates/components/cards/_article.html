@@ -1,6 +1,6 @@
 {% set heroText = "" %}
   {% if entry.heroTitle=="" %}
-    {% set heroText = entry.title | raw %}
+    {% set heroText = entry.title %}
   {% else %}
     {% set heroText = entry.heroTitle %}
   {% endif %}
@@ -13,14 +13,16 @@
 {% endfor %}
 <div class="card">
   <div class="card__thumb block--margin-bottomSM">
-    <a href="{{ entry.url }}"><img src="{{ heroImageUrl != "" ? heroImageUrl.getUrl('cardThumbnail') }}" alt="{{ entry.title }}"></a>
+    <a href="{{ entry.url }}"><img src="{{ heroImageUrl != "" ? heroImageUrl.url }}" alt="{{ entry.title }}"></a>
   </div>
   <div class="card__content block--margin-bottomSM">
     <div class="category">{{ entry.blogCategory.one() != null ? entry.blogCategory.one().title }}</div>
-    <h3 class="card__content__title"><a href="{{ entry.url }}">{{ heroText }}</a></h3>
-    <p class="card__content__description color--grey-dark">{{ entry.shortDescription | raw }}</p>
+    <h3 class="card__content__title"><a href="{{ entry.url }}">{{ heroText  | raw }}</a></h3>
+    <div class="card__content__description color--grey-dark">{{ entry.shortDescription | raw }}</div>
   </div>
+  {% if showLearnMore is defined and showLearnMore %}
   <div class="">
     <a class="button button--light--arrow" href="{{ entry.url }}">Learn More</a>
   </div>
+  {% endif %}
 </div>

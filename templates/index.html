@@ -26,9 +26,9 @@
 {% endblock %}
 
 {% block content %}
-  <section class="block--paddingSM block--bg-navy hero">
-    <div class="container">
-      <div class="row block--padding-bottom">
+  <section class="block--padding block--bg-navy hero">
+    <div class="container block--padding-none">
+      <div class="row block--padding-bottomLG">
         <div class="col-lg-6 align-self-center block--margin-bottomSM">
           <h1 class="color--white">Our Startups are Changing the Business. </h1>
           <p class="color--white-soft">
@@ -37,25 +37,55 @@
             <a href="/portfolio" class="button--alternate color--white">View our Portfolio</a>
           </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6" style="position: relative">
           <img id="logo" class="next-particle"
                data-gravity="0.3"
-               data-particle-gap="3"
+               data-particle-gap="2"
                data-noise="50"
                src="/template-img/logos/bowery-logo.png"
-               data-max-width="600"
-               data-width="600"
-               data-height="484" style="display: none;">
+               data-max-width="800"
+               data-width="800"
+               data-height="584" style="display: none;">
         </div>
       </div>
       <div class="row block--padding border-top__white">
         <div class="col-md-3">
-          <h2 class="color--white block--paddingSM">Investment Strategy</h2>
+          <h2 class="color--white block--paddingSM">Investment Thesis</h2>
         </div>
         <div class="col-md-8 offset-md-1">
           <p class="color--white">
-            We believe the shift to next generation software is a massive opportunity at roughly 400 billion dollars driven primarily by the rise of the internet native. Since our founding in 2013, we continue to believe we are in the early days of this shift. At Bowery Capital, our thesis is to capitalize on this shift to the next generation of spend by identifying and investing in the absolute best software businesses leading this charge.
+            We believe the shift to next generation business software is a massive opportunity, driven by 1) the rise of the “internet natives” within the enterprise, 2) new and expanding software budgets within the enterprise, and 3) an increasing demand for software within traditionally laggard industries.
           </p>
+        </div>
+      </div>
+      <div class="row block--padding-topLG-desktop">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-3 center">
+              <div class="statistic">
+                <h2 class="color--white statistic__metric">$100M+</h2>
+                <p class="color--white statistic__label">AUM</p>
+              </div>
+            </div>
+            <div class="col-md-3 center">
+              <div class="statistic">
+                <h2 class="color--white statistic__metric">Seed</h2>
+                <p class="color--white statistic__label">Stage</p>
+              </div>
+            </div>
+            <div class="col-md-3 center">
+              <div class="statistic">
+                <h2 class="color--white statistic__metric">Lead</h2>
+                <p class="color--white statistic__label">Investor</p>
+              </div>
+            </div>
+            <div class="col-md-3 center">
+              <div class="statistic">
+                <h2 class="color--white statistic__metric">B2B</h2>
+                <p class="color--white statistic__label">SaaS & Marketplaces</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -65,49 +95,27 @@
       <div class="row block--padding block--margin-bottomXL">
         <div class="offset-md-2 col-md-5 order-md-1">
           <div class="img-container--bg__brand">
-            <img src="/template-img/body-images/code.jpg" alt="Focused on Emerging B2B Technologies"/>
+            {% set imageOne = homePageContent.homePageImages.one().url %}
+            <img src="{{ imageOne }}" alt="Investing in Next-Gen B2B Software">
           </div>
         </div>
         <div class="col-md-5 order-md-0 align-self-center">
           <div class="category"></div>
-          <h2>Focused on Emerging B2B Technologies</h2>
-          <p>We believe that the next ten years will be the most transformational period in the history of modern business as the impact of emerging technologies is realized. Our Investment Team aims to be the best possible thought partner to founders seeking to capitalize on these unprecedented trends.</p>
+          <h2>Investing in Next-Gen B2B Software</h2>
+          <p>We believe that over the next ten years we will see a massive shift in software spend from legacy to next-gen software. Bowery Capital is at the forefront of this shift, identifying and investing in the absolute best founders and businesses leading the charge. </p>
         </div>
       </div>
-      <div class="row block--padding block--margin-bottomXL">
+      <div class="row block--padding">
         <div class="offset-md-2 col-md-5 order-md-1">
           <div class="img-container--bg__brand">
-            <img src="/template-img/body-images/stock-chart.jpg" alt="Focused on Emerging B2B Technologies"/>
+            {% set imageTwo = homePageContent.homePageImages.last().url %}
+            <img src="{{ imageTwo }}" alt="Helping Founders Scale Revenue">
           </div>
         </div>
         <div class="col-md-5 order-md-0 align-self-center">
           <div class="category"></div>
           <h2>Helping Founders Scale Revenue</h2>
           <p>Bowery Capital’s Acceleration Team helps founders solve the single biggest challenge they will face in their formative years: building an effective marketing, sales, and customer success engine. Post-investment, we arm our portfolio companies with resources, experts, and services proven to accelerate early-stage growth. </p>
-        </div>
-      </div>
-      <div class="row block--padding-topLG-desktop">
-        <div class="col-md-10 offset-md-1">
-          <div class="row">
-            <div class="col-md-4 center">
-              <div class="statistic">
-                <h2 class="color--navy statistic__metric">47</h2>
-                <p class="color--navy statistic__label">portfolio companies</p>
-              </div>
-            </div>
-            <div class="col-md-4 center">
-              <div class="statistic">
-                <h2 class="color--navy statistic__metric">$100M+</h2>
-                <p class="color--navy statistic__label">AUM</p>
-              </div>
-            </div>
-            <div class="col-md-4 center">
-              <div class="statistic">
-                <h2 class="color--navy statistic__metric">$1-2M</h2>
-                <p class="color--navy statistic__label">check size</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -172,7 +180,7 @@
           <h2 class="text-center">We Have A Concentrated Approach To Portfolio Value-Add</h2>
         </div>
         <div class="col-lg-10 offset-lg-1">
-          <p class="block--margin-bottom text-center">Sales, marketing and customer success issues are the most common impediments to successful go-to-market motions. Since Bowery Capital’s first investment in 2013, our Acceleration Team has focused on post-investment support across three key support functions: Talent, Growth, and Business Development. </p>
+          <p class="block--margin-bottom text-center">Sales, marketing and customer success challenges are the most common impediments to successful go-to-market motions. Since Bowery Capital’s first investment in 2013, our Acceleration Team has focused on post-investment support across three key support functions: Growth, Talent, and Business Development.</p>
         </div>
         <div class="col-lg-4">
           <div class="card block--paddingLG block--padding-horizontalSM">
@@ -183,7 +191,7 @@
               <h3 class="card__content__title">Growth</h3>
               <p class="card__content__description color--grey-dark block--margin-bottom">
                 Revenue is the lifeblood of any business. For VC-backed startups, it’s also one of the best early indicators of traction and product-market fit. We help founders build a strong GTM foundation by implementing best practice strategies, processes, and technology across sales, marketing, and customer success. With the right groundwork in place, our founders can focus their time on high-leverage activities.</p>
-              <a class="button button--light--arrow" href="/blog">Read Blog</a>
+              <a class="button button--light--arrow" href="/blog">Our Blog</a>
             </div>
           </div>
         </div>
@@ -208,10 +216,27 @@
             <div class="card__content block--margin-bottomSM">
               <h3 class="card__content__title"> Business Development</h3>
               <p class="card__content__description color--grey-dark block--margin-bottom">
-                Business development is the sustenance that keeps our pipelines full. Warm introductions to your target ICP can jumpstart your sales process and lock in your first referenceable customers. We are focused on providing our founders with the right prospective customer introductions at the right time.
+                Business development is the sustenance that keeps our pipelines full. Warm introductions to your target ICP can jumpstart your sales process and lock in your first referenceable customers. We are focused on providing our founders with the right prospective customer introductions at the right time. We also help our founders create fruitful referral partnerships.
               </p>
-              <a class="button button--light--arrow" href="/team">Our Team</a>
+              <a class="button button--light--arrow" href="/team">Our Approach</a>
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="row border-bottom__gray block--padding-bottomLG">
+        <div class="col-md-9 align-self-center">
+          <div class="row">
+            {% for entry in homePageContent.homePagePortfolioLogos %}
+              {% set companyLogo = entry.companyLogo.one().url %}
+              <div class="col-lg-3 col-md-6 align-self-center d-flex justify-content-center">
+                <img src="{{ companyLogo }}" alt="{{ entry.title }}" class="max-height-150">
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="col-md-3 align-self-center">
+          <div class="block--margin-topSM text-right block--margin-bottomSM">
+            <a href="/portfolio" class="button--alternate">View Our Portfolio</a>
           </div>
         </div>
       </div>
@@ -232,7 +257,7 @@
         </div>
         <div class="col-lg-4">
           <div class="block--margin-topSM text-right block--margin-bottomSM">
-            <a href="/blog" class="button--alternate">View our blog</a>
+            <a href="/blog" class="button--alternate">Read Our Blog</a>
           </div>
           <div class="articles__more">
             <div class="articles__more--heading border-bottom__gray">Most Recent</div>
@@ -246,7 +271,7 @@
               <div class="card card__mini">
                 <div class="card__content">
                   <div class="category category__short">{{ entry.blogCategory.one() is defined ? entry.blogCategory.one() }}</div>
-                  <h3 class="card__content__title"><a href="{{ entry.url }}">{{ entry.title }}</a></h3>
+                  <h3 class="card__content__title"><a href="{{ entry.url }}">{{ entry.title | raw }}</a></h3>
                 </div>
                 <div class="card__thumb">
                   <a href="{{ entry.url }}"><img src="{{ heroImageUrl != "" ? heroImageUrl.getUrl('cardThumbnail') }}" alt="{{ entry.title }}"></a>

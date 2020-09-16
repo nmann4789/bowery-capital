@@ -105,13 +105,13 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <img src="{{ heroImageUrl != "" ? heroImageUrl.getUrl('heroImage') }}" alt="{{ entry.url }}">
+            <img src="{{ heroImageUrl != "" ? heroImageUrl.getUrl('heroImage') }}" alt="{{ entry.title }}">
           </div>
           <div class="col-md-6">
             <div class="card__featured d-flex">
               <div class="card__content">
                 <div class="category color--olive">{{ entry.blogCategory.one() is not null ? entry.blogCategory.one().title }}</div>
-                <h2 class="card__content__title">{{ entry.title }}</h2>
+                <h2 class="card__content__title">{{ entry.title | raw }}</h2>
                 <div class="article__meta">
                   <p class="article__meta--date">{{ entry.postDate | date('F d, Y') }}</p>
                   <div class="article__meta--topics block--margin-bottomSM">
@@ -134,10 +134,10 @@
         </div>
       </div>
     </section>
-    <section class="block--padding border-bottom__gray article__body">
+    <section class="border-bottom__gray article__body">
       <div class="container block--margin-bottom">
         <div class="row">
-          <div class="col-md-10">
+          <div class="col-md-12">
             {% for block in entry.contentBuilder %}
               {% include "components/content-builder/"~block.type~".html" with {content:block} %}
             {% endfor %}

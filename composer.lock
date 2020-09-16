@@ -4,8 +4,67 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "36eb7bf05519398888f9fa1328ce7174",
+    "content-hash": "f2bd3f0677ab80dcdccd02384b8e39bb",
     "packages": [
+        {
+            "name": "balazscsaba2006/amplify",
+            "version": "1.0.7",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/balazscsaba2006/craft3-amplify/zipball/ed7f154695cc61d5b7da901f396ab77f454cd6d5",
+                "reference": "ed7f154695cc61d5b7da901f396ab77f454cd6d5",
+                "shasum": ""
+            },
+            "require": {
+                "craftcms/cms": "^3.0.0",
+                "fasterimage/fasterimage": "~1.2",
+                "php": ">=7.0"
+            },
+            "type": "craft-plugin",
+            "extra": {
+                "name": "Amplify",
+                "handle": "amplify",
+                "hasCpSettings": false,
+                "hasCpSection": false,
+                "changelogUrl": "https://raw.githubusercontent.com/balazscsaba2006/craft3-amplify/master/CHANGELOG.md",
+                "class": "humandirect\\amplify\\Amplify"
+            },
+            "autoload": {
+                "files": [
+                    "src/lib/simple_html_dom.php"
+                ],
+                "psr-4": {
+                    "humandirect\\amplify\\": "src/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Human Direct",
+                    "homepage": "https://humandirect.eu"
+                }
+            ],
+            "description": "Twig filter for the Craft CMS 3 to optimize rich text content for Google AMP.",
+            "keywords": [
+                "AMP",
+                "Craft accelerated mobile pages",
+                "Craft amp",
+                "amplify",
+                "cms",
+                "craft",
+                "craft-plugin",
+                "craftcms"
+            ],
+            "support": {
+                "email": "csaba.balazs@humandirect.eu",
+                "issues": "https://github.com/balazscsaba2006/craft3-amplify/issues?state=open",
+                "source": "https://github.com/balazscsaba2006/craft3-amplify",
+                "docs": "https://github.com/balazscsaba2006/craft3-amplify"
+            },
+            "time": "2019-04-20T21:54:24+00:00"
+        },
         {
             "name": "cakephp/core",
             "version": "3.8.10",
@@ -906,6 +965,41 @@
             "time": "2019-12-09T09:24:04+00:00"
         },
         {
+            "name": "ether/seo",
+            "version": "3.6.6",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ethercreative/seo/zipball/cfacc65fbea87ace4a40c0c0e5d35ce2e1167e60",
+                "reference": "cfacc65fbea87ace4a40c0c0e5d35ce2e1167e60",
+                "shasum": ""
+            },
+            "require": {
+                "craftcms/cms": "^3.2.0"
+            },
+            "type": "craft-plugin",
+            "extra": {
+                "handle": "seo",
+                "name": "SEO",
+                "developer": "Ether Creative",
+                "developerUrl": "https://ethercreative.co.uk",
+                "class": "ether\\seo\\Seo"
+            },
+            "autoload": {
+                "psr-4": {
+                    "ether\\seo\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "SEO utilities including a unique field type, sitemap, & redirect manager",
+            "support": {
+                "issues": "https://github.com/ethercreative/seo",
+                "docs": "https://github.com/ethercreative/seo/blob/v3/README.md"
+            },
+            "time": "2020-06-30T13:44:29+00:00"
+        },
+        {
             "name": "ezyang/htmlpurifier",
             "version": "v4.12.0",
             "dist": {
@@ -946,6 +1040,50 @@
                 "html"
             ],
             "time": "2019-10-28T03:44:26+00:00"
+        },
+        {
+            "name": "fasterimage/fasterimage",
+            "version": "v1.5.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/willwashburn/fasterimage/zipball/42d125a15dc124520aff2157bbed9a4b2d4f310a",
+                "reference": "42d125a15dc124520aff2157bbed9a4b2d4f310a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "willwashburn/stream": ">=1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Will Washburn",
+                    "email": "will@tailwindapp.com"
+                },
+                {
+                    "name": "Weston Ruter"
+                }
+            ],
+            "description": "FasterImage finds the size or type of a set of images given their uris by fetching as little as needed, in parallel. Originally ported by Tom Moor.",
+            "homepage": "https://github.com/willwashburn/fasterimage",
+            "keywords": [
+                "fast image",
+                "faster image",
+                "fasterimage",
+                "fastimage",
+                "getimagesize",
+                "image size",
+                "parallel"
+            ],
+            "time": "2019-05-25T14:33:33+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -3670,6 +3808,43 @@
                 "graphql"
             ],
             "time": "2018-09-02T14:59:54+00:00"
+        },
+        {
+            "name": "willwashburn/stream",
+            "version": "v1.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/willwashburn/stream/zipball/345b3062493e3899d987dbdd1fec1c13ee28c903",
+                "reference": "345b3062493e3899d987dbdd1fec1c13ee28c903",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WillWashburn\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Will Washburn",
+                    "email": "will.washburn@gmail.com"
+                }
+            ],
+            "description": "model a sequence of data elements made available over time ",
+            "homepage": "https://github.com/willwashburn/stream",
+            "keywords": [
+                "peek",
+                "read",
+                "stream",
+                "streamable"
+            ],
+            "time": "2016-03-15T10:54:35+00:00"
         },
         {
             "name": "yii2tech/ar-softdelete",

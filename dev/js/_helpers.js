@@ -90,8 +90,30 @@ const _helpers = {
       $(this).removeClass('color-orange arrow')
     })
   },
+  initCategoriesDropdown: function () {
+    $('.header__sub--door').on('click', function () {
+      $(this).toggleClass('open')
+      $(this).closest('.header__sub').find('.header__sub--options').toggleClass('hidden')
+    })
+  },
+  initCategoryUpdate: function () {
+    let blogTopic = this.getParameterByName('topic')
+    if (blogTopic) {
+      $('.blog__filter').each(function (index, element) {
+        console.log($(element).attr('data-category'), ', ', blogTopic)
+        if ($(element).attr('data-category') === blogTopic) {
+          $('.blog__filter.active').removeClass('active')
+          $(element).addClass('active')
+        }
+      })
+    } else {
+      $('.blog__filter').eq(0).addClass('active')
+    }
+  },
   init: function () {
+    this.initCategoryUpdate()
     this.scrollToDiv()
+    this.initCategoriesDropdown()
   }
 }
 

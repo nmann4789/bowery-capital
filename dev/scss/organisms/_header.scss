@@ -23,6 +23,63 @@ header {
 }
 
 .header__sub {
+  &--door {
+    font-family: Helvetica Neue;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 32px;
+    text-align: center;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    cursor: pointer;
+    &--state {
+      position: relative;
+      top: -2px;
+      &.header__sub--door--close {
+        display: none;
+      }
+    }
+    &.open {
+      .header__sub--door--close {
+        display: inline;
+      }
+      .header__sub--door--open {
+        display: none;
+      }
+    }
+  }
+  &--options {
+    &.hidden {
+      display: none;
+    }
+    display: flex;
+    justify-content: space-around;
+    > div {
+      padding: 10px 0 10px 0px;
+      a {
+        font-family: Helvetica Neue;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        position: relative;
+      }
+    }
+  }
+  &--group {
+    h4 {
+      text-transform: uppercase;
+      font-family: Helvetica Neue;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      position: relative;
+      left: -35px;
+    }
+    > div {
+      margin-bottom: 25px;
+    }
+  }
   ul {
     margin: 0;
     padding: 0;

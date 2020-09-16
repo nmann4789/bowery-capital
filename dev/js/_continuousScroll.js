@@ -1,20 +1,9 @@
 /* global $ */
-const _helpers = require('./_helpers')
 const _continuousScrollFeed = {
   settings: {
     cardsToLoad: 12,
     startingLength: 0,
     isLoading: false
-  },
-  handleFilterSelect: function () {
-    $('.feed-filter').on('change', function (e) {
-      e.preventDefault()
-      let $searchValue = $('#search-box').val()
-      let $topicDropdown = $('#topicDropdown').val()
-      let queryString = _continuousScrollFeed.buildQueryString($searchValue, $topicDropdown)
-      let currentChannel = _helpers.getUrlSegment(1)
-      window.location.href = window.location.origin + '/' + currentChannel + queryString + '#category-filter'
-    })
   },
   setToggleValues: function () {
     let search = this.getParameterByName('search')
@@ -120,6 +109,16 @@ const _continuousScrollFeed = {
       $(element).removeClass('card__loading').addClass('card__loaded')
     }, delay)
   },
+  initSearch: function () {
+    $('.search-form button').on('click', function (e) {
+      if ($(this).closest('.search-form').hasClass('closed')) {
+        e.preventDefault()
+        $(this).closest('.search-form').removeClass('closed')
+      } else {
+        $(this).closest('.search-form').unbind().submit()
+      }
+    })
+  },
   init: function () {
     if ($('.continuous-scroll').length > 0) {
       _continuousScrollFeed.loadMoreCards()
@@ -127,6 +126,9 @@ const _continuousScrollFeed = {
     if ($('#category-filter').length > 0) {
       _continuousScrollFeed.handleFilterSelect()
       _continuousScrollFeed.setToggleValues()
+    }
+    if ($('.search-form').length > 0) {
+      _continuousScrollFeed.initSearch()
     }
   }
 }

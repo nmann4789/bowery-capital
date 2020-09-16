@@ -47,7 +47,7 @@
       {% include "components/nav/_subnavBlog.html" with {categories:craft.categories.group('blogCategory').limit(5)} %}
       <div class="col-md-4 d-flex align-items-center justify-content-end hidden-md-down">
         <form action="{{ url('search/results') }}" class="d-flex align-items-center justify-content-end search-form closed">
-          <input type="search" name="q" placeholder="{{ searchParam }}">
+          <input type="search" name="q" value="{{ searchParam }}">
           <button type="submit">{% include "components/svg/search.svg" %}</button>
         </form>
       </div>
@@ -58,7 +58,7 @@
 <section class="block--padding">
   <div class="container">
     <div class="row">
-      <div class="col-md-12 block--padding-none">
+      <div class="col-md-12">
         {% include "components/cards/_articleFeatured.html" with {entry: featuredEntry} %}
       </div>
     </div>
@@ -67,7 +67,7 @@
 {% elseif searchParam|length > 0 %}
 <section class="block--bg-grey-cool block--paddingXL text-center">
   <div class="category__large category color--tan">What's New In</div>
-  <h1>{{ blogTopicParam }}</h1>
+  <h2>{{ searchParam }}</h2>
 </section>
 {% endif %}
 <section class="block--paddingXL">
@@ -75,7 +75,7 @@
     <div class="row blog-card-container continuous-scroll">
       {% for entry in entries %}
         <div class="col-md-6 col-lg-4 block--margin-bottom card-container">
-          {% include "components/cards/_article.html" with {entry: entry} %}
+          {% include "components/cards/_article.html" with {entry: entry, showLearnMore:false} %}
         </div>
       {% endfor %}
     </div>

@@ -35,22 +35,21 @@
 
 {% block content %}
 <section class="block--bg-grey-cool block--paddingXL text-center">
-  <div class="category__large category color--tan">Our Portfolio</div>
   <h1>{{ editableHeroText.portfolioHeroText }}</h1>
 </section>
-<section class="block--padding">
+<section class="block--bg-navy">
   <div class="container">
     <div class="row">
       {% include "components/nav/_subnavPortfolio.html" with {categories:craft.categories.group('companyType'), activeCategory:portfolioTopicParam} %}
     </div>
   </div>
 </section>
-<section class="block--margin-bottomXL card__portfolio--container">
+<section class="block--paddingLG card__portfolio--container">
   <div class="container">
-    <div class="row">
+    <div class="row card__portfolio--row">
       {% for entry in entries %}
         <div class="col-lg-3 col-md-4 col-sm-6 block--margin-bottomSM pos-adjusted">
-          <div class="card__portfolio">
+          <div class="card__portfolio" data-filters="{% for category in entry.companyType.all() %}{{ category.slug }}{{ not loop.last ? ',' }}{% endfor %}">
             <div class="card__portfolio--preview">
               <div class="card__portfolio--acquired {{ entry.wasAcquired ? 'true' }}">Acquired</div>
               <img src="{{entry.companyLogo.one() != null ? entry.companyLogo.one().url}}" alt="{{entry.title}}" />
@@ -58,7 +57,7 @@
             <div class="card__portfolio--popout">
               <div class="card__portfolio--popout--close">{% include "components/svg/close.svg" %}</div>
               <div class="card__portfolio--popout--thumb d-flex align-items-center">
-                <img src="{{entry.companyLogo.one() != null ? entry.companyLogo.one().url}}" alt="{{entry.title}}" />
+                <img src="{{entry.companyLogo.one() != null ? entry.companyLogo.one().url}}" alt="{{entry.title}}" class="max-height-150"/>
                 <div class="card__portfolio--acquired {{ entry.wasAcquired ? 'true' }}">Acquired</div>
               </div>
               <div class="block--padding-horizontalSM block--margin-bottom">
@@ -81,5 +80,6 @@
     </div>
   </div>
 </section>
-
+<section class="card__portfolio--container hidden">
+</section>
 {% endblock %}
