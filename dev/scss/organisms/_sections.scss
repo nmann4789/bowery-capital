@@ -39,11 +39,19 @@
         padding-top: 60px;
         padding-bottom: 60px;
       }
+      @media (max-width: 991px) {
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
     }
   }
   &--paddingXL {
     padding-top: 80px;
     padding-bottom: 80px;
+    @media (max-width: 991px) {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
   }
   &--padding-bottomSM {
     padding-bottom: 20px;
@@ -72,6 +80,14 @@
   &--padding-horizontal {
     padding-left: 40px;
     padding-right: 40px;
+    &-desktop {
+      padding-left: 40px;
+      padding-right: 40px;
+      @media (max-width: 991px) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
   }
   &--padding-horizontalLG {
     padding-left: 60px;
@@ -89,6 +105,9 @@
   }
   &--margin-bottom {
     margin-bottom: 40px;
+    @media (max-width: 991px) {
+      margin-bottom: 20px;
+    }
   }
   &--margin-bottomLG {
     margin-bottom: 60px;
@@ -141,5 +160,10 @@
   }
   &--margin-rightXL {
     margin-right: 80px;
+  }
+  &--min-height {
+    &-60 {
+      min-height: 60px;
+    }
   }
 }

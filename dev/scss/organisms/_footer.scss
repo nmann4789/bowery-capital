@@ -1,20 +1,27 @@
-footer{
-  ul{
+footer {
+  ul {
     font-weight: 400;
-    color:$white;
-    margin:0;
-    padding:0;
-    li{
+    color: $white;
+    margin: 0;
+    padding: 0;
+    li {
       list-style-type: none;
-      &:first-child{
-        margin-top: 15px;
+      @media (min-width: 768px) {
+        &:first-child {
+          margin-top: 15px;
+        }
       }
-      a{
+      @media (max-width: 767px) {
+        &:last-child {
+          margin-bottom: 15px;
+        }
+      }
+      a {
         text-decoration: none;
-        color:$white;
+        color: $white;
         transition: all 300ms;
-        &:hover{
-          color:darken($white, 30%)
+        &:hover {
+          color: darken($white, 30%);
         }
       }
     }

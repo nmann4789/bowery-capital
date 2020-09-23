@@ -12,7 +12,7 @@
         {% if groupTopics | length %}
             <div class="header__sub--group">
             <h4 class="color--white">{{ group.title }}</h4>
-            {% for topic in groupTopics %}
+            {% for topic in groupTopics.all() %}
                 <div><a href="{{ siteUrl ~ "portfolio?type=" ~ topic.slug }}" class="category__filter color--white {{ activeCategory == topic.slug ? 'active' }}" data-category="{{ topic.slug }}"><span class="radio-button"></span>{{ topic.title }}</a></div>
             {% endfor %}
             </div>

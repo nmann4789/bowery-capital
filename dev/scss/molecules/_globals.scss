@@ -63,6 +63,12 @@ iframe {
 .text {
   &-right {
     text-align: right;
+    &-desktop {
+      text-align: right;
+      @media (max-width: 767px) {
+        text-align: left;
+      }
+    }
   }
   &-center {
     text-align: center;
@@ -114,6 +120,9 @@ iframe {
         right: -30px;
         background: $tan;
         z-index: -1;
+      }
+      @media (max-width: 767px) {
+        top: -50px;
       }
     }
   }

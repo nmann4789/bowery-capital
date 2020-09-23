@@ -12,6 +12,7 @@
     cursor: crosshair;
     @media (max-width: 991px) {
       opacity: 0;
+      pointer-events: none;
     }
   }
 }

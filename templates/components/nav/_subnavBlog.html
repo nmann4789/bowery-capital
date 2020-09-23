@@ -1,7 +1,8 @@
 <nav class="col-lg-8 align-self-center header__sub">
+  <div class="filter"><p>Filter <span>{% include 'components/svg/carat-right.svg' %}</span></p></div>
   <ul class="d-flex">
     <li><a href="{{ siteUrl ~ 'blog' }}" class="blog__filter" data-category="">All</a></li>
-    {% for topic in categories %}
+    {% for topic in categories.all() %}
       <li><a href="{{ siteUrl ~ "blog?topic=" ~ topic.slug }}" class="blog__filter" data-category="{{ topic.slug }}">{{ topic.title }}</a></li>
     {% endfor %}
   </ul>

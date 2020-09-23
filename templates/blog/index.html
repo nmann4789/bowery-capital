@@ -41,13 +41,13 @@
 {% endblock %}
 
 {% block content %}
-<section class="block--padding-horizontalSM block--bg-grey-warm">
+<section class="block--bg-grey-warm block--min-height-60">
   <div class="container">
     <div class="row">
       {% include "components/nav/_subnavBlog.html" with {categories:craft.categories.group('blogCategory').limit(5)} %}
-      <div class="col-md-4 d-flex align-items-center justify-content-end hidden-md-down">
+      <div class="col-lg-4 d-flex align-items-center justify-content-end hidden-md-down">
         <form action="{{ url('search/results') }}" class="d-flex align-items-center justify-content-end search-form closed">
-          <input type="search" name="q" value="{{ searchParam }}">
+          <input type="search" name="q" value="{{ searchParam }}" placeholder="Search">
           <button type="submit">{% include "components/svg/search.svg" %}</button>
         </form>
       </div>

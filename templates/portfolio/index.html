@@ -61,10 +61,9 @@
                 <div class="card__portfolio--acquired {{ entry.wasAcquired ? 'true' }}">Acquired</div>
               </div>
               <div class="block--padding-horizontalSM block--margin-bottom">
-                <p class="card__portfolio--popout--it">{{ entry.investmentType.title }}</p>
                 <p class="card__portfolio--popout--desc">{{ entry.shortDescription | raw }}</p>
                 <div class="card__portfolio--popout--yi">{% include "components/svg/dollar.svg" %} Invested in {{ entry.yearInvested }}</div>
-                <div class="article__meta block--margin-bottom">
+                <div class="article__meta block--margin-bottomSM">
                   <div class="article__meta--topics">
                     {% for category in entry.companyType.all() %}
                     <a href="#" class="article__meta--topic">{{ category.title }}</a>

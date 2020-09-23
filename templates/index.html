@@ -27,7 +27,7 @@
 
 {% block content %}
   <section class="block--padding block--bg-navy hero">
-    <div class="container block--padding-none">
+    <div class="container">
       <div class="row block--padding-bottomLG">
         <div class="col-lg-6 align-self-center block--margin-bottomSM">
           <h1 class="color--white">Our Startups are Changing the Business. </h1>
@@ -54,32 +54,32 @@
         </div>
         <div class="col-md-8 offset-md-1">
           <p class="color--white">
-            We believe the shift to next generation business software is a massive opportunity, driven by 1) the rise of the “internet natives” within the enterprise, 2) new and expanding software budgets within the enterprise, and 3) an increasing demand for software within traditionally laggard industries.
+            We believe the shift to next generation business software is a massive opportunity, driven by the rise of the “internet natives” within the enterprise, new and expanding software budgets within the enterprise, and an increasing demand for software within traditionally laggard industries.
           </p>
         </div>
       </div>
       <div class="row block--padding-topLG-desktop">
         <div class="col-md-12">
           <div class="row">
-            <div class="col-md-3 center">
+            <div class="col-lg-3 col-md-6 center">
               <div class="statistic">
                 <h2 class="color--white statistic__metric">$100M+</h2>
                 <p class="color--white statistic__label">AUM</p>
               </div>
             </div>
-            <div class="col-md-3 center">
+            <div class="col-lg-3 col-md-6 center">
               <div class="statistic">
                 <h2 class="color--white statistic__metric">Seed</h2>
                 <p class="color--white statistic__label">Stage</p>
               </div>
             </div>
-            <div class="col-md-3 center">
+            <div class="col-lg-3 col-md-6 center">
               <div class="statistic">
                 <h2 class="color--white statistic__metric">Lead</h2>
                 <p class="color--white statistic__label">Investor</p>
               </div>
             </div>
-            <div class="col-md-3 center">
+            <div class="col-lg-3 col-md-6 center">
               <div class="statistic">
                 <h2 class="color--white statistic__metric">B2B</h2>
                 <p class="color--white statistic__label">SaaS & Marketplaces</p>
@@ -91,7 +91,7 @@
     </div>
   </section>
   <section class="block--paddingXL">
-    <div class="container">
+    <div class="container block--padding-topLG">
       <div class="row block--padding block--margin-bottomXL">
         <div class="offset-md-2 col-md-5 order-md-1">
           <div class="img-container--bg__brand">
@@ -108,7 +108,7 @@
       <div class="row block--padding">
         <div class="offset-md-2 col-md-5 order-md-1">
           <div class="img-container--bg__brand">
-            {% set imageTwo = homePageContent.homePageImages.last().url %}
+            {% set imageTwo = homePageContent.homePageImages.inReverse().one().url %}
             <img src="{{ imageTwo }}" alt="Helping Founders Scale Revenue">
           </div>
         </div>
@@ -183,7 +183,7 @@
           <p class="block--margin-bottom text-center">Sales, marketing and customer success challenges are the most common impediments to successful go-to-market motions. Since Bowery Capital’s first investment in 2013, our Acceleration Team has focused on post-investment support across three key support functions: Growth, Talent, and Business Development.</p>
         </div>
         <div class="col-lg-4">
-          <div class="card block--paddingLG block--padding-horizontalSM">
+          <div class="card block--paddingLG-desktop block--padding-horizontalSM">
             <div class="block--margin-bottom">
               <img src="/template-img/svg/growth.svg" class="height-60" alt="growth">
             </div>
@@ -195,8 +195,8 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="card block--paddingLG block--padding-horizontalSM">
+        <div class="col-lg-4">
+          <div class="card block--paddingLG-desktop block--padding-horizontalSM">
             <div class="block--margin-bottom">
               <img src="/template-img/svg/talent.svg" class="height-60" alt="talent">
             </div>
@@ -209,7 +209,7 @@
           </div>
         </div>
         <div class="col-lg-4">
-          <div class="card block--paddingLG block--padding-horizontalSM">
+          <div class="card block--paddingLG-desktop block--padding-horizontalSM">
             <div class="block--margin-bottom">
               <img src="/template-img/svg/business.svg" class="height-60" alt="business development">
             </div>
@@ -218,24 +218,24 @@
               <p class="card__content__description color--grey-dark block--margin-bottom">
                 Business development is the sustenance that keeps our pipelines full. Warm introductions to your target ICP can jumpstart your sales process and lock in your first referenceable customers. We are focused on providing our founders with the right prospective customer introductions at the right time. We also help our founders create fruitful referral partnerships.
               </p>
-              <a class="button button--light--arrow" href="/team">Our Approach</a>
+              <a class="button button--light--arrow" href="/blog/business-development">Our Approach</a>
             </div>
           </div>
         </div>
       </div>
       <div class="row border-bottom__gray block--padding-bottomLG">
-        <div class="col-md-9 align-self-center">
+        <div class="col-lg-9 align-self-center justify-content-center block--margin-bottom">
           <div class="row">
-            {% for entry in homePageContent.homePagePortfolioLogos %}
+            {% for entry in homePageContent.homePagePortfolioLogos.all() %}
               {% set companyLogo = entry.companyLogo.one().url %}
-              <div class="col-lg-3 col-md-6 align-self-center d-flex justify-content-center">
+              <div class="col-lg-3 col-6 align-self-center d-flex justify-content-center">
                 <img src="{{ companyLogo }}" alt="{{ entry.title }}" class="max-height-150">
               </div>
             {% endfor %}
           </div>
         </div>
-        <div class="col-md-3 align-self-center">
-          <div class="block--margin-topSM text-right block--margin-bottomSM">
+        <div class="col-lg-3 align-self-center justify-content-center">
+          <div class="block--margin-topSM text-right-desktop block--margin-bottomSM">
             <a href="/portfolio" class="button--alternate">View Our Portfolio</a>
           </div>
         </div>
@@ -256,7 +256,7 @@
           </div>
         </div>
         <div class="col-lg-4">
-          <div class="block--margin-topSM text-right block--margin-bottomSM">
+          <div class="block--margin-topSM text-right-desktop block--margin-bottomSM">
             <a href="/blog" class="button--alternate">Read Our Blog</a>
           </div>
           <div class="articles__more">

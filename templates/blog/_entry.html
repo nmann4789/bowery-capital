@@ -38,8 +38,7 @@
 
   {% set nextEntries = clone(query)
     .relatedTo(blogCategory)
-    .postDate('>= ' ~ entry.postDate.timestamp)
-    .order('postDate asc')
+    .orderBy('postDate asc')
     .limit(3) %}
 
   {% extends "layouts/_baseLayout" %}
@@ -68,7 +67,7 @@
         "dateModified": "{{ entry.dateUpdated|date() }}",
         "author": {
           "@type": "Person",
-          "name": "{{ entry.author.fullName }}"
+          "name": "{{ entry.blogAuthor.one() is not null ? entry.blogAuthor.one().title }}"
         },
         "publisher": {
           "@type": "Organization",
@@ -88,11 +87,11 @@
 
 
   {% block content %}
-    <section class="block--padding-horizontalSM block--bg-grey">
+    <section class="block--bg-grey block--min-height-60">
       <div class="container">
         <div class="row">
           {% include "components/nav/_subnavBlog.html" with {categories:craft.categories.group('blogCategory').limit(5)} %}
-          <div class="col-md-4 d-flex align-items-center justify-content-end ">
+          <div class="col-lg-4 d-flex align-items-center justify-content-end hidden-md-down">
             <form action="{{ url('search/results') }}" class="d-flex align-items-center justify-content-end search-form closed">
               <input type="search" name="q" placeholder="Search">
               <button type="submit">{% include "components/svg/search.svg" %}</button>
@@ -115,7 +114,7 @@
                 <div class="article__meta">
                   <p class="article__meta--date">{{ entry.postDate | date('F d, Y') }}</p>
                   <div class="article__meta--topics block--margin-bottomSM">
-                    {% for category in entry.blogCategory %}
+                    {% for category in entry.blogCategory.all() %}
                       <a href="{{ siteUrl ~ "blog?topic=" ~ category.slug }}" class="article__meta--topic">{{ category.title }}</a>
                     {% endfor %}
                   </div>
@@ -138,7 +137,7 @@
       <div class="container block--margin-bottom">
         <div class="row">
           <div class="col-md-12">
-            {% for block in entry.contentBuilder %}
+            {% for block in entry.contentBuilder.all() %}
               {% include "components/content-builder/"~block.type~".html" with {content:block} %}
             {% endfor %}
           </div>
@@ -159,7 +158,7 @@
           <div class="col-md-12 text-center block--margin-bottomLG">
             <h2>You might also like...</h2>
           </div>
-          {% for entry in nextEntries %}
+          {% for entry in nextEntries.all() %}
             <div class="col-md-6 col-lg-4">
               {% include "components/cards/_article.html" with {entry: entry} %}
             </div>

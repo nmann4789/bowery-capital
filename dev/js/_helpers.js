@@ -110,10 +110,24 @@ const _helpers = {
       $('.blog__filter').eq(0).addClass('active')
     }
   },
+  initMobileHeader: function () {
+    $('.nav--mobile').on('click', function () {
+      $('header nav').toggleClass('open')
+    })
+  },
+  initBlogFilter: function () {
+    $('.header__sub .filter').on('click', function (event) {
+      event.preventDefault()
+      $(this).closest('.header__sub').find('ul').toggleClass('open')
+      $(this).toggleClass('open')
+    })
+  },
   init: function () {
     this.initCategoryUpdate()
     this.scrollToDiv()
     this.initCategoriesDropdown()
+    this.initMobileHeader()
+    this.initBlogFilter()
   }
 }
 

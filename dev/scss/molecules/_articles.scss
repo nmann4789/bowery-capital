@@ -1,6 +1,10 @@
 .articles {
   &__more {
     padding-left: 25px;
+    @media (max-width: 991px) {
+      padding-top: 25px;
+      padding-left: 0;
+    }
     &--heading {
       font-family: Merriweather;
       font-style: normal;
@@ -53,6 +57,7 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
       margin-right: 10px;
+      margin-bottom: 10px;
     }
   }
 }
